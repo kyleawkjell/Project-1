@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // var location;
 // var map = $(`<div>`).attr("id", "map");
 
@@ -26,7 +25,6 @@ function initMap() {
     // the marker, positioned at Denver
     var marker = new google.maps.Marker({position: Denver, map: map});
 }
-=======
 var yelpQueryURL = "http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=starbucks&latitude=37.786882&longitude=-122.399972"
 
 $.ajax({
@@ -38,4 +36,3 @@ $.ajax({
 }).then(function(response) {
     console.log(response)
 })
->>>>>>> e0e53e97204cd63b57db58029cef1281478b22ae
