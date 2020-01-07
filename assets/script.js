@@ -128,3 +128,25 @@ $("#searchBtn").on("click", function (event) {
 })
 
 onLoad();
+
+$("#b1").on("click", function(){
+    $(".budgetBox").show();
+    $("#budgetTotal").text("$100");
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();   
+})
+$("#b2").on("click", function(){
+    $(".budgetBox").show();
+    $("#budgetTotal").text("$250");
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
+})
+$("#b3").on("click", function(){
+    $(".budgetBox").show();
+    $("#budgetTotal").text("$325");
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
+})
