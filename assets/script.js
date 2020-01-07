@@ -50,9 +50,9 @@ function renderMarkers() {
 yelpSearch();
 
 function yelpSearch() {
-    var searchTerm = $("#searchInp").val()
+    var searchTerm = $("#userInp").val();
     var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=37.786882&longitude=-122.399972`
-    var searchBox = $("#searchBox")
+    var searchBox = $("#searchBox");
     $.ajax({
         url: yelpQueryURL,
         method: "GET",
@@ -60,6 +60,7 @@ function yelpSearch() {
             Authorization: "Bearer 2XkaLgENjEmUK7eaqNghrPWK2Y6W-vvX9unRTijv3APoGO8xHVkZoGhHuW9_NBeKRmigFk-21QV8bXdM2SfIurwR7IKq5RwXWE8xlNN7fLUQBxod9JuVSh6scp4TXnYx"
         }
     }).then(function(response) {
+        
         var lat1 = response.businesses[0].coordinates.latitude;
         var lng1 = response.businesses[0].coordinates.longitude;
         var lat2 = response.businesses[1].coordinates.latitude;
