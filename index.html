@@ -90,25 +90,34 @@
             <div class="col s12">
                 <div class="card-panel white">
                     <div class="row">
-                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" id="searchBtn">search</i></a>
-                        <form class="col s9">
+                        <a id="searchBtn" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
+                        <form class="col s11">
                             <div class="row">
                                 <div class="input-field col s12">
                                     <textarea id="userInp" class="materialize-textarea"></textarea>
                                     <label class="active" for="userInp">Restaurant Search</label>
                                 </div>
-                                <div id="searchResults">
-                                </div>
                             </div>
                         </form>
+                    </div>
+                    <div class="row">
+                        <div id="searchResults"></div>
+                    </div>
+                    <div class="row">
+                        <div id="map" style="position: initial;"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTGeXn6uxwlPcg4jxLrqN01gzNn9RfAI&callback=initMap">
+    console.log(map);
+    </script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/script.js"></script>
 </body>
 

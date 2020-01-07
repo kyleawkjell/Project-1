@@ -14,6 +14,8 @@
 //     console.log(response);
 // })
 
+var price
+
 function initMap() {
     // the location
     var Denver = {lat: 39.739, lng: -104.990};
@@ -37,23 +39,23 @@ function yelpSearch () {
             Authorization: "Bearer 2XkaLgENjEmUK7eaqNghrPWK2Y6W-vvX9unRTijv3APoGO8xHVkZoGhHuW9_NBeKRmigFk-21QV8bXdM2SfIurwR7IKq5RwXWE8xlNN7fLUQBxod9JuVSh6scp4TXnYx"
         }
     }).then(function(response) {
-        var price = response.businesses[0].price
         console.log(response)
-        if (price === "$") {
-            searchBox.text("The average user spends $10 or less here.")
-        } else if (price === "$$") {
-            searchBox.text("The average user spends between $10 and $30 here.")
-        } else if (price === "$$$") {
-            searchBox.text("The average user spends between $30 and $60 here.")
-        } else if (price === "$$$$") {
-            searchBox.text("The average user spends more than $60 here.")
-        }
+        searchBox.text(`${response.businesses[0].name} ${response.businesses[0].location.address1} ${response.businesses[0].price}`)
     })
+}
+
+function printToPage (){
+    if (price === "$") {
+        searchBox.text("The average user spends $10 or less here.")
+    } else if (price === "$$") {
+        searchBox.text("The average user spends between $10 and $30 here.")
+    } else if (price === "$$$") {
+        searchBox.text("The average user spends between $30 and $60 here.")
+    } else if (price === "$$$$") {
+        searchBox.text("The average user spends more than $60 here.")
+    }
+}
 
 $("#searchBtn").on("click", function(event){
-    event.preventDefault();
-    console.log("yay")
-    // yelpSearch();
+    yelpSearch();
 })
-
-}
