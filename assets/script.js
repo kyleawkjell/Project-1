@@ -73,7 +73,7 @@ function yelpSearch() {
     }).then(function (response) {
         console.log(response)
         resetSearch();
-        var newBtns = `<button>Sounds great!</button> <button>No way, Jose</button>`
+        var newBtns = `<button id="selectChoice">Sounds great!</button> <button id="rejectChoice">No way, Jose</button>`
         $("#choiceName").text(`Your choice: ${response.businesses[0].name}`)
         $("#choiceAddress").text(`Address: ${response.businesses[0].location.address1}`)
         searchBox.append(newBtns)
@@ -136,6 +136,13 @@ $("#searchBtn").on("click", function (event) {
     if ($("#userInp").val() !== "") {
         yelpSearch();
     }
+})
+
+searchBox.on("click", "#selectChoice", function(event) {
+})
+
+searchBox.on("click", "#rejectChoice", function(event) {
+    resetSearch()
 })
 
 onLoad();
