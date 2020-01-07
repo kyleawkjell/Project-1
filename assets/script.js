@@ -15,6 +15,19 @@
 // })
 
 var price
+var lat 
+var long
+
+function onLoad(){
+    navigator.geolocation.getCurrentPosition(function(position) {
+        console.log(position)
+        console.log(window)
+        lat = position.coords.latitude
+        long = position.coords.longitude
+        console.log(lat)
+        console.log(long)
+    })
+}
 
 function initMap() {
     // the location
@@ -30,7 +43,7 @@ function initMap() {
 
 function yelpSearch () {
     var searchTerm = $("#userInp").val()
-    var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=37.786882&longitude=-122.399972`
+    var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${lat}&longitude=${long}`
     var searchBox = $("#searchResults")
     $.ajax({
         url: yelpQueryURL,
@@ -63,3 +76,5 @@ function printToPage (){
 $("#searchBtn").on("click", function(event){
     yelpSearch();
 })
+
+onLoad();
