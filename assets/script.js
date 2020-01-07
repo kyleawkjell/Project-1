@@ -124,8 +124,8 @@ function yelpSearch() {
 
 }
 
-$("#searchBtn").on("click", function (event) {
-    yelpSearch();
+searchBox.on("click", "#selectChoice", function(event) {
+
 
     var storeSearch = $(`#userInp`).val();
 
