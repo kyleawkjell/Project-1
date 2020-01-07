@@ -46,22 +46,8 @@ function renderMarkers() {
     var marker5 = new google.maps.Marker({position: result5, map: map});
 }
 
-var yelpQueryURL = "http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=starbucks&latitude=37.786882&longitude=-122.399972"
 
-$.ajax({
-    url: yelpQueryURL,
-    method: "GET",
-    headers: {
-    Authorization: "Bearer 2XkaLgENjEmUK7eaqNghrPWK2Y6W-vvX9unRTijv3APoGO8xHVkZoGhHuW9_NBeKRmigFk-21QV8bXdM2SfIurwR7IKq5RwXWE8xlNN7fLUQBxod9JuVSh6scp4TXnYx"
-    }
-}).then(function(response) {
-
-    
-    
-    
-    
-})
-
+yelpSearch();
 
 function yelpSearch() {
     var searchTerm = $("#searchInp").val()
@@ -74,24 +60,39 @@ function yelpSearch() {
             Authorization: "Bearer 2XkaLgENjEmUK7eaqNghrPWK2Y6W-vvX9unRTijv3APoGO8xHVkZoGhHuW9_NBeKRmigFk-21QV8bXdM2SfIurwR7IKq5RwXWE8xlNN7fLUQBxod9JuVSh6scp4TXnYx"
         }
     }).then(function(response) {
-        var lat1 = response.businesses[0].coordinates.latitude.toFixed(3);
-        var lng1 = response.businesses[0].coordinates.longitude.toFixed(3);
-        var lat2 = response.businesses[1].coordinates.latitude.toFixed(3);
-        var lng2 = response.businesses[1].coordinates.longitude.toFixed(3);
-        var lat3 = response.businesses[2].coordinates.latitude.toFixed(3);
-        var lng3 = response.businesses[2].coordinates.longitude.toFixed(3);
-        var lat4 = response.businesses[3].coordinates.latitude.toFixed(3);
-        var lng4 = response.businesses[3].coordinates.longitude.toFixed(3);
-        var lat5 = response.businesses[4].coordinates.latitude.toFixed(3);
-        var lng5 = response.businesses[4].coordinates.longitude.toFixed(3);
+        var lat1 = response.businesses[0].coordinates.latitude;
+        var lng1 = response.businesses[0].coordinates.longitude;
+        var lat2 = response.businesses[1].coordinates.latitude;
+        var lng2 = response.businesses[1].coordinates.longitude;
+        var lat3 = response.businesses[2].coordinates.latitude;
+        var lng3 = response.businesses[2].coordinates.longitude;
+        var lat4 = response.businesses[3].coordinates.latitude;
+        var lng4 = response.businesses[3].coordinates.longitude;
+        var lat5 = response.businesses[4].coordinates.latitude;
+        var lng5 = response.businesses[4].coordinates.longitude;
+
+        var lat = response.region.center.latitude;
+        var lng = response.region.center.longitude;
+
+        var newCity = {lat: lat, lng: lng};
         
         var restaurant1 = {lat: lat1, lng: lng1};
         var restaurant2 = {lat: lat2, lng: lng2};
         var restaurant3 = {lat: lat3, lng: lng3};
         var restaurant4 = {lat: lat4, lng: lng4};
         var restaurant5 = {lat: lat5, lng: lng5};
-        
-        var price = response.businesses[0].price;
+
+        $(`#map`).html = "";
+        var map = new google.maps.Map(
+            document.getElementById("map"), {zoom: 12, center: newCity});
+
+        var marker1 = new google.maps.Marker({position: restaurant1, map: map});
+        var marker2 = new google.maps.Marker({position: restaurant2, map: map});
+        var marker3 = new google.maps.Marker({position: restaurant3, map: map});
+        var marker4 = new google.maps.Marker({position: restaurant4, map: map});
+        var marker5 = new google.maps.Marker({position: restaurant5, map: map});
+
+         var price = response.businesses[0].price;
         if (price === "$") {
             searchBox.text("The average user spends $10 or less here.")
         } else if (price === "$$") {
