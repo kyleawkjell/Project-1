@@ -84,8 +84,7 @@
             <div class="col s12">
                 <div class="card-panel white">
                     <div class="row">
-                        <a class="btn-floating btn-large waves-effect waves-light red"><i
-                                class="material-icons">search</i></a>
+                        <a id="searchBtn" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
                         <form class="col s11">
                             <div class="row">
                                 <div class="input-field col s12">
@@ -96,7 +95,11 @@
                         </form>
                     </div>
                     <div class="row">
-                        <div id="searchResults"></div>
+                        <div id="searchResults">
+                            <div><span id="choiceName"></span></div>
+                            <div><span id="choiceAddress"></span></div>
+                            <div><span id="choicePrice"></span></div>
+                        </div>
                     </div>
                     <div class="row">
                         <div id="map" style="position: initial;"></div>
@@ -117,11 +120,10 @@
     </div>
 
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTGeXn6uxwlPcg4jxLrqN01gzNn9RfAI&callback=initMap">
-            console.log(map);
-        </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTGeXn6uxwlPcg4jxLrqN01gzNn9RfAI&callback=initMap">
+    console.log(map);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/script.js"></script>
 </body>
 
