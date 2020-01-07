@@ -61,9 +61,10 @@ function renderMarkers() {
 }
 
 function yelpSearch() {
-    var searchTerm = $("#userInp").val()
-    var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${userLat}&longitude=${userLong}`
-    $("#userInp").val("")
+    var searchTerm = $("#userInp").val();
+    var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=37.786882&longitude=-122.399972`
+    var searchBox = $("#searchBox");
+        $("#userInp").val("")
     $.ajax({
         url: yelpQueryURL,
         method: "GET",
@@ -77,7 +78,6 @@ function yelpSearch() {
         $("#choiceName").text(`Your choice: ${response.businesses[0].name}`)
         $("#choiceAddress").text(`Address: ${response.businesses[0].location.address1}`)
         searchBox.append(newBtns)
-
         var lat1 = response.businesses[0].coordinates.latitude;
         var lng1 = response.businesses[0].coordinates.longitude;
         var lat2 = response.businesses[1].coordinates.latitude;
@@ -146,3 +146,25 @@ searchBox.on("click", "#rejectChoice", function(event) {
 })
 
 onLoad();
+
+$("#b1").on("click", function(){
+    $(".budgetBox").show();
+    $("#budgetTotal").text("$100");
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();   
+})
+$("#b2").on("click", function(){
+    $(".budgetBox").show();
+    $("#budgetTotal").text("$250");
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
+})
+$("#b3").on("click", function(){
+    $(".budgetBox").show();
+    $("#budgetTotal").text("$325");
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
+})
