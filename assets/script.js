@@ -40,7 +40,11 @@ function yelpSearch () {
         }
     }).then(function(response) {
         console.log(response)
-        searchBox.text(`${response.businesses[0].name} ${response.businesses[0].location.address1} ${response.businesses[0].price}`)
+        var newBtns = `<button>Sounds great!</button> <button> No way, Jose</button>`
+        $("#choiceName").text(`Your choice: ${response.businesses[0].name}`)
+        $("#choiceAddress").text(`Address: ${response.businesses[0].location.address1}`)
+        $("#choicePrice").text(`Price: ${response.businesses[0].price}`)
+        searchBox.append(newBtns)
     })
 }
 
