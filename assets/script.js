@@ -5,8 +5,9 @@ var searchBox = $("#searchResults")
 
 function onLoad() {
     navigator.geolocation.getCurrentPosition(function (position) {
-        userLat = position.coords.latitude
-        userLong = position.coords.longitude
+        userLat = position.coords.latitude;
+        userLong = position.coords.longitude;
+        $("#userInp").val() = window.localStorage.getItem('query');
     })
 }
 
@@ -61,10 +62,9 @@ function renderMarkers() {
 }
 
 function yelpSearch() {
-    var searchTerm = $("#userInp").val();
-    var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=37.786882&longitude=-122.399972`
-    var searchBox = $("#searchBox");
-        $("#userInp").val("")
+    var searchTerm = $("#userInp").val()
+    var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${userLat}&longitude=${userLong}`
+    var searchBox = $("#searchResults")
     $.ajax({
         url: yelpQueryURL,
         method: "GET",
@@ -139,6 +139,10 @@ $("#searchBtn").on("click", function (event) {
 })
 
 searchBox.on("click", "#selectChoice", function(event) {
+    var storeSearch = $(`#userInp`).val();
+
+    window.localStorage.setItem('query', storeSearch);
+    
 })
 
 searchBox.on("click", "#rejectChoice", function(event) {
