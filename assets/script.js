@@ -11,6 +11,13 @@ function onLoad() {
     })
 }
 
+function resetSearch() {
+    var choiceName = `<div><span id="choiceName"></span></div>`
+    var choiceAddress = `<div><span id="choiceAddress"></span></div>`
+    var avgPrice = `<div><span id="avgPrice"></span></div>`
+    searchBox.html(choiceName + choiceAddress + avgPrice)
+}
+
 //Google Maps functionality:
 
 var lat;
@@ -125,12 +132,32 @@ function yelpSearch() {
 
 }
 
-function resetSearch() {
-    var choiceName = `<div><span id="choiceName"></span></div>`
-    var choiceAddress = `<div><span id="choiceAddress"></span></div>`
-    var avgPrice = `<div><span id="avgPrice"></span></div>`
-    searchBox.html(choiceName + choiceAddress + avgPrice)
-}
+
+//On-click events
+
+$("#b1").on("click", function(){
+    $(".budgetBox").show();
+    $("#budgetTotal").text("$100");
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();   
+})
+
+$("#b2").on("click", function(){
+    $(".budgetBox").show();
+    $("#budgetTotal").text("$250");
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
+})
+
+$("#b3").on("click", function(){
+    $(".budgetBox").show();
+    $("#budgetTotal").text("$325");
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
+})
 
 $("#searchBtn").on("click", function (event) {
     if ($("#userInp").val() !== "") {
@@ -151,24 +178,3 @@ searchBox.on("click", "#rejectChoice", function(event) {
 
 onLoad();
 
-$("#b1").on("click", function(){
-    $(".budgetBox").show();
-    $("#budgetTotal").text("$100");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();   
-})
-$("#b2").on("click", function(){
-    $(".budgetBox").show();
-    $("#budgetTotal").text("$250");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
-})
-$("#b3").on("click", function(){
-    $(".budgetBox").show();
-    $("#budgetTotal").text("$325");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
-})
