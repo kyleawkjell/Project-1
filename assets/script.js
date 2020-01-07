@@ -27,9 +27,9 @@ function initMap() {
 }
 
 function yelpSearch () {
-    var searchTerm = $("#searchInp").val()
+    var searchTerm = $("#userInp").val()
     var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=37.786882&longitude=-122.399972`
-    var searchBox = $("#searchBox")
+    var searchBox = $("#searchResults")
     $.ajax({
         url: yelpQueryURL,
         method: "GET",
@@ -50,9 +50,10 @@ function yelpSearch () {
         }
     })
 
-$("searchBtn").on("click", function(event){
+$("#searchBtn").on("click", function(event){
     event.preventDefault();
-    yelpSearch();
+    console.log("yay")
+    // yelpSearch();
 })
 
 }
