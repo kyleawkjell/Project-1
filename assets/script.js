@@ -1,31 +1,11 @@
-// var location;
-// var map = $(`<div>`).attr("id", "map");
-
-// var searchCity = "Denver";
-// var apiKey = "AIzaSyDMTGeXn6uxwlPcg4jxLrqN01gzNn9RfAI"
-
-// var queryURL = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`
-
-
-// $.ajax({
-//     url: queryURL,
-//     method: "GET"
-// }).then(function(response) {
-//     console.log(response);
-// })
-
 var price
 var lat 
 var long
 
 function onLoad(){
     navigator.geolocation.getCurrentPosition(function(position) {
-        console.log(position)
-        console.log(window)
         lat = position.coords.latitude
         long = position.coords.longitude
-        console.log(lat)
-        console.log(long)
     })
 }
 
