@@ -1,6 +1,6 @@
 var lat;
 var lng;
-var result1 = {};
+var result1 = [];
 var result2 = {};
 var result3 = {};
 var result4 = {};
@@ -56,11 +56,56 @@ $.ajax({
     }
 }).then(function(response) {
 
-  console.log(response);
-
-  var lat1 = response.businesses[0].coordinates.latitude.toFixed(3);
-  console.log(lat1);
-  var lng1 = response.businesses[0].coordinates.latitude.toFixed(3);
-  console.log(lng1);
-
+    
+    
+    
+    
 })
+
+
+function yelpSearch() {
+    var searchTerm = $("#searchInp").val()
+    var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=37.786882&longitude=-122.399972`
+    var searchBox = $("#searchBox")
+    $.ajax({
+        url: yelpQueryURL,
+        method: "GET",
+        headers: {
+            Authorization: "Bearer 2XkaLgENjEmUK7eaqNghrPWK2Y6W-vvX9unRTijv3APoGO8xHVkZoGhHuW9_NBeKRmigFk-21QV8bXdM2SfIurwR7IKq5RwXWE8xlNN7fLUQBxod9JuVSh6scp4TXnYx"
+        }
+    }).then(function(response) {
+        var lat1 = response.businesses[0].coordinates.latitude.toFixed(3);
+        var lng1 = response.businesses[0].coordinates.longitude.toFixed(3);
+        var lat2 = response.businesses[1].coordinates.latitude.toFixed(3);
+        var lng2 = response.businesses[1].coordinates.longitude.toFixed(3);
+        var lat3 = response.businesses[2].coordinates.latitude.toFixed(3);
+        var lng3 = response.businesses[2].coordinates.longitude.toFixed(3);
+        var lat4 = response.businesses[3].coordinates.latitude.toFixed(3);
+        var lng4 = response.businesses[3].coordinates.longitude.toFixed(3);
+        var lat5 = response.businesses[4].coordinates.latitude.toFixed(3);
+        var lng5 = response.businesses[4].coordinates.longitude.toFixed(3);
+        
+        var restaurant1 = {lat: lat1, lng: lng1};
+        var restaurant2 = {lat: lat2, lng: lng2};
+        var restaurant3 = {lat: lat3, lng: lng3};
+        var restaurant4 = {lat: lat4, lng: lng4};
+        var restaurant5 = {lat: lat5, lng: lng5};
+        
+        var price = response.businesses[0].price;
+        if (price === "$") {
+            searchBox.text("The average user spends $10 or less here.")
+        } else if (price === "$$") {
+            searchBox.text("The average user spends between $10 and $30 here.")
+        } else if (price === "$$$") {
+            searchBox.text("The average user spends between $30 and $60 here.")
+        } else if (price === "$$$$") {
+            searchBox.text("The average user spends more than $60 here.")
+        }
+        
+        
+    })
+    
+    $("searchBtn").on("click", function(event){
+        event.preventDefault();
+        yelpSearch();
+    })}
