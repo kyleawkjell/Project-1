@@ -8,28 +8,35 @@ var currentBudget
 var detractAmt
 
 
-function onLoad() {
-    navigator.geolocation.getCurrentPosition(function (position) {
-        userLat = position.coords.latitude;
-        userLong = position.coords.longitude;
-
-        initMap();
-
-        userInput = localStorage.getItem('query');
-
-        console.log(userLat);
-        console.log(userLong);
-        console.log(userInput);
-
-
-    })
-}
-
 function resetSearch() {
     var choiceName = `<div><span id="choiceName"></span></div>`
     var choiceAddress = `<div><span id="choiceAddress"></span></div>`
     var avgPrice = `<div><span id="avgPrice"></span></div>`
     searchBox.html(choiceName + choiceAddress + avgPrice)
+}
+
+function userLocation() {
+    var queryURL = "https://geolocation-db.com/json/";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        userLat = JSON.parse(response).latitude;
+        console.log(userLat);
+        userLong = JSON.parse(response).longitude;
+        console.log(userLong);
+
+        var currentLocation = { lat: userLat, lng: userLong };
+
+        // the map, centered on current location
+        var map = new google.maps.Map(
+            document.getElementById("map"), { zoom: 12, center: currentLocation });
+    
+        // the marker, positioned at current location
+        var marker = new google.maps.Marker({ position: currentLocation, map: map });
+
+    })
 }
 
 //Google Maps functionality:
@@ -41,46 +48,6 @@ var result2 = {};
 var result3 = {};
 var result4 = {};
 var result5 = {};
-
-function initMap() {
-    // the location
-    var currentLocation = { lat: userLat, lng: userLong };
-
-    // the map, centered on Denver
-    var map = new google.maps.Map(
-        document.getElementById("map"), { zoom: 12, center: currentLocation });
-
-    // the marker, positioned at Denver
-    var marker = new google.maps.Marker({ position: currentLocation, map: map });
-}
-
-function newMap() {
-    // location
-    var newCity = { lat, lng };
-
-    //the map, centered on location
-    var map = new google.maps.Map(
-        document.getElementById("map"), { zoom: 12, center: newCity });
-
-    // the marker, positioned on newCity
-    var marker = new google.maps.Marker({ position: newCity, map: map });
-}
-
-function renderMarkers() {
-    //location
-    var newCity = { lat, lng };
-
-    //the map, centered on location
-    var map = new google.maps.Map(
-        document.getElementById("map"), { zoom: 12, center: newCity });
-
-    // five new markers for the restaurants
-    var marker1 = new google.maps.Marker({ position: result1, map: map });
-    var marker2 = new google.maps.Marker({ position: result2, map: map });
-    var marker3 = new google.maps.Marker({ position: result3, map: map });
-    var marker4 = new google.maps.Marker({ position: result4, map: map });
-    var marker5 = new google.maps.Marker({ position: result5, map: map });
-}
 
 function yelpSearch() {
     searchTerm = $("#userInp").val()
@@ -179,7 +146,9 @@ searchBox.on("click", "#rejectChoice", function (event) {
     resetSearch()
 })
 
-onLoad();
+userLocation();
+
+
 
 $("#b1").on("click", function () {
     $(".budgetBox").show();
@@ -240,6 +209,4 @@ searchBox.on("click", "#selectChoice", function (event) {
 searchBox.on("click", "#rejectChoice", function (event) {
     resetSearch()
 })
-
-onLoad();
 
