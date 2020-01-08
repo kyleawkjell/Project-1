@@ -123,6 +123,7 @@ function yelpSearch() {
 function runMath() {
     currentBudget = currentBudget - detractAmt
     console.log(currentBudget)
+    $("#budgetTotal").text(`$${currentBudget}`)
 }
 
 
