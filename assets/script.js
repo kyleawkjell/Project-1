@@ -70,6 +70,7 @@ function renderMarkers() {
 
 function yelpSearch() {
     var searchTerm = $("#userInp").val()
+    $("#userInp").val("")
     var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${userLat}&longitude=${userLong}`
     var searchBox = $("#searchResults")
     $.ajax({
@@ -135,15 +136,15 @@ function yelpSearch() {
 
 //On-click events
 
-$("#b1").on("click", function(){
+$("#b1").on("click", function () {
     $(".budgetBox").show();
     $("#budgetTotal").text("$100");
     $(".searchCard").show();
     $(".des").hide();
-    $(".options").hide();   
+    $(".options").hide();
 })
 
-$("#b2").on("click", function(){
+$("#b2").on("click", function () {
     $(".budgetBox").show();
     $("#budgetTotal").text("$250");
     $(".searchCard").show();
@@ -151,7 +152,7 @@ $("#b2").on("click", function(){
     $(".options").hide();
 })
 
-$("#b3").on("click", function(){
+$("#b3").on("click", function () {
     $(".budgetBox").show();
     $("#budgetTotal").text("$325");
     $(".searchCard").show();
@@ -159,20 +160,34 @@ $("#b3").on("click", function(){
     $(".options").hide();
 })
 
-$("#searchBtn").on("click", function (event) {
+$("form").on("submit", function (event) {
+    event.preventDefault()
     if ($("#userInp").val() !== "") {
         yelpSearch();
     }
 })
 
-searchBox.on("click", "#selectChoice", function(event) {
-    var storeSearch = $(`#userInp`).val();
-
-    window.localStorage.setItem('query', storeSearch);
-    
+$("#searchBtn").on("click", function (event) {
+    event.preventDefault();
+    if ($("#userInp").val() !== "") {
+        yelpSearch();
+    }
 })
 
-searchBox.on("click", "#rejectChoice", function(event) {
+searchBox.on("click", "#selectChoice", function (event) {
+// Prompt for number of people
+    
+    showDinerNumber();
+    
+    
+// Local storage setting:
+
+    var storeSearch = $(`#userInp`).val();
+    window.localStorage.setItem('query', storeSearch);
+
+})
+
+searchBox.on("click", "#rejectChoice", function (event) {
     resetSearch()
 })
 
