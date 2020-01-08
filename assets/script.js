@@ -2,12 +2,23 @@ var price
 var userLat
 var userLong
 var searchBox = $("#searchResults")
+var userInput = $(`#userInp`)
+
 
 function onLoad() {
     navigator.geolocation.getCurrentPosition(function (position) {
         userLat = position.coords.latitude;
         userLong = position.coords.longitude;
-        $("#userInp").val() = window.localStorage.getItem('query');
+
+        initMap();
+
+        userInput = localStorage.getItem('query');
+
+        console.log(userLat);
+        console.log(userLong);
+        console.log(userInput);
+
+
     })
 }
 
@@ -30,14 +41,14 @@ var result5 = {};
 
 function initMap() {
     // the location
-    var Denver = { lat: 39.739, lng: -104.990 };
+    var currentLocation = { lat: userLat, lng: userLong };
 
     // the map, centered on Denver
     var map = new google.maps.Map(
-        document.getElementById("map"), { zoom: 12, center: Denver });
+        document.getElementById("map"), { zoom: 12, center: currentLocation });
 
     // the marker, positioned at Denver
-    var marker = new google.maps.Marker({ position: Denver, map: map });
+    var marker = new google.maps.Marker({ position: currentLocation, map: map });
 }
 
 function newMap() {
@@ -135,6 +146,26 @@ function yelpSearch() {
 
 
 //On-click events
+
+$("#searchBtn").on("click", function (event) {
+    if ($("#userInp").val() !== "") {
+        yelpSearch();
+    }
+})
+
+searchBox.on("click", "#selectChoice", function(event) {
+    var storeSearch = userInput.val();
+    console.log(storeSearch);
+
+    localStorage.setItem('query', storeSearch);
+    
+})
+
+searchBox.on("click", "#rejectChoice", function(event) {
+    resetSearch()
+})
+
+onLoad();
 
 $("#b1").on("click", function () {
     $(".budgetBox").show();
