@@ -174,8 +174,6 @@ function userLocation() {
 onLoad();        
 userLocation();
 
-
-
 $("#b1").on("click", function () {
     $(".budgetBox").show();
     $("#budgetTotal").text("$100");
@@ -206,6 +204,12 @@ $("#b3").on("click", function () {
     localStorage.setItem('budget', currentBudget);
 })
 
+$("#submitBudget").on("click", function(event){
+    currentBudget = $("#budgetInp").val()
+    currentBudget = parseInt(currentBudget)
+    console.log(currentBudget)
+})
+
 $("form").on("submit", function (event) {
     event.preventDefault()
     if ($("#userInp").val() !== "") {
@@ -233,9 +237,9 @@ searchBox.on("click", "#selectChoice", function (event) {
     // Run math functionality
 
     runMath()
+    resetSearch()
 })
 
 searchBox.on("click", "#rejectChoice", function (event) {
     resetSearch()
 })
-
