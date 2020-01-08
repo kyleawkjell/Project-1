@@ -210,6 +210,12 @@ $("#submitBudget").on("click", function(event){
     console.log(currentBudget)
 })
 
+$("#budgetReturn").on("click", function(event) {
+    currentBudget = ""
+    localStorage.setItem('budget', currentBudget);
+    location.reload()
+})
+
 $("form").on("submit", function (event) {
     event.preventDefault()
     if ($("#userInp").val() !== "") {
