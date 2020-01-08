@@ -144,6 +144,13 @@ function onLoad() {
     }
 }
 
+function showBudgetDiv(){
+    localStorage.setItem('budget', currentBudget);
+    $(".budgetBox").show();
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
+}
 
 //On-click events
 
@@ -162,55 +169,29 @@ onLoad();
 userLocation();
 
 $("#b1").on("click", function () {
-    $(".budgetBox").show();
     $("#budgetTotal").text("$100");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
     currentBudget = 100;
-    localStorage.setItem('budget', currentBudget);
+    showBudgetDiv()
 })
 
 $("#b2").on("click", function () {
-    $(".budgetBox").show();
     $("#budgetTotal").text("$250");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
-    currentBudget = 250
-    localStorage.setItem('budget', currentBudget);
+    currentBudget = 250;
+    showBudgetDiv()
 })
 
 $("#b3").on("click", function () {
-    $(".budgetBox").show();
     $("#budgetTotal").text("$325");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
-    currentBudget = 325
-    localStorage.setItem('budget', currentBudget);
-})
-
-$("#submitBudget").on("click", function (event) {
-    currentBudget = $("#budgetInp").val().split(",").join("")
-    currentBudget = parseInt(currentBudget)
-    $(".budgetBox").show();
-    $("#budgetTotal").text(`$${currentBudget}`);
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
-    console.log(currentBudget)
+    currentBudget = 325;
+    showBudgetDiv()
 })
 
 $("#userSubbedBudget").on("submit", function (event) {
     event.preventDefault()
     currentBudget = $("#budgetInp").val().split(",").join("")
     currentBudget = parseInt(currentBudget)
-    $(".budgetBox").show();
     $("#budgetTotal").text(`$${currentBudget}`);
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
+    showBudgetDiv()
 })
 
 $("#budgetReturn").on("click", function (event) {
