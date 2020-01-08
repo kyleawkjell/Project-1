@@ -65,7 +65,7 @@ function userLocation() {
         }).then(function (response) {
             console.log(response)
             resetSearch();
-            var newBtns = `<button id="selectChoice">Sounds great!</button> <button id="rejectChoice">No way, Jose</button>`
+            var newBtns = `<a class="waves-effect waves-light btn purple" id="selectChoice">Sounds great!</a> <a class="waves-effect waves-light btn purple" id="rejectChoice">No way, Jose</a>`
             $("#choiceName").text(`Your choice: ${response.businesses[0].name}`)
             $("#choiceAddress").text(`Address: ${response.businesses[0].location.address1}`)
             searchBox.append(newBtns)
@@ -179,7 +179,7 @@ function userLocation() {
                 
             }
         }
-        
+
         function historyOnLoad() {
             // $(`#userChoices`).append = window.localStorage.getItem('choice');
             
@@ -197,6 +197,7 @@ function userLocation() {
             
             console.log(window.localStorage.choice);
             
+            $(`#choiceAddress`).append(localStorage.getItem('place'));
             
             
             
