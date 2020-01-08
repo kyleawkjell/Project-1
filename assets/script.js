@@ -207,6 +207,11 @@ $("#b3").on("click", function () {
 $("#submitBudget").on("click", function(event){
     currentBudget = $("#budgetInp").val()
     currentBudget = parseInt(currentBudget)
+    $(".budgetBox").show();
+    $("#budgetTotal").text(currentBudget);
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
     console.log(currentBudget)
 })
 
