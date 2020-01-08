@@ -6,6 +6,7 @@ var userInput = $(`#userInp`)
 var searchTerm = $("#userInp").val();
 var currentBudget
 var detractAmt
+var historyLink = $("#historyLink");
 
 
 function resetSearch() {
@@ -155,46 +156,64 @@ function userLocation() {
         
         searchBox.on("click", "#selectChoice", function(event) {
             
-            runMath();
             var storeChoice = $("#choiceName").text();
             var choiceAddress = $("#choiceAddress").text();
-           
+            runMath();
+            
             localStorage.setItem('query', searchTerm);
             localStorage.setItem('choice', storeChoice);
             localStorage.setItem('place', choiceAddress);
             localStorage.setItem('budget', currentBudget);
+            
+            console.log(storeChoice);
+            
+            
+            
+            $("#populateChoice").text(storeChoice);
             
         })
         
         searchBox.on("click", "#rejectChoice", function (event) {
             resetSearch()
         })
-    
         
-onLoad();        
-userLocation();
+        function populateHistory() {
+            var newDiv = `<div id="populateChoice"></div><div id="populateAddress"></div>`;
+            $("#historyPop").append(newDiv);
+            
+        }
 
-$("#b1").on("click", function () {
-    $(".budgetBox").show();
-    $("#budgetTotal").text("$100");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
-    currentBudget = 100;
-    localStorage.setItem('budget', currentBudget);
-})
-
-$("#b2").on("click", function () {
-    $(".budgetBox").show();
-    $("#budgetTotal").text("$250");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
-    currentBudget = 250
-    localStorage.setItem('budget', currentBudget);
-})
-
-$("#b3").on("click", function () {
+        onLoad();        
+        userLocation();
+        
+        historyLink.on("click", function() {
+            
+            alert("success");
+            populateHistory();
+            
+        })
+        
+        $("#b1").on("click", function () {
+            $(".budgetBox").show();
+            $("#budgetTotal").text("$100");
+            $(".searchCard").show();
+            $(".des").hide();
+            $(".options").hide();
+            currentBudget = 100;
+            localStorage.setItem('budget', currentBudget);
+        })
+        
+        $("#b2").on("click", function () {
+            $(".budgetBox").show();
+            $("#budgetTotal").text("$250");
+            $(".searchCard").show();
+            $(".des").hide();
+            $(".options").hide();
+            currentBudget = 250
+            localStorage.setItem('budget', currentBudget);
+        })
+        
+        $("#b3").on("click", function () {
     $(".budgetBox").show();
     $("#budgetTotal").text("$325");
     $(".searchCard").show();
