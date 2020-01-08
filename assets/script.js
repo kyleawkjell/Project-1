@@ -22,6 +22,13 @@ function onLoad() {
     })
 }
 
+function resetSearch() {
+    var choiceName = `<div><span id="choiceName"></span></div>`
+    var choiceAddress = `<div><span id="choiceAddress"></span></div>`
+    var avgPrice = `<div><span id="avgPrice"></span></div>`
+    searchBox.html(choiceName + choiceAddress + avgPrice)
+}
+
 //Google Maps functionality:
 
 var lat;
@@ -74,6 +81,7 @@ function renderMarkers() {
 
 function yelpSearch() {
     var searchTerm = $("#userInp").val()
+    $("#userInp").val("")
     var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${userLat}&longitude=${userLong}`
     var searchBox = $("#searchResults")
     $.ajax({
@@ -136,12 +144,8 @@ function yelpSearch() {
 
 }
 
-function resetSearch() {
-    var choiceName = `<div><span id="choiceName"></span></div>`
-    var choiceAddress = `<div><span id="choiceAddress"></span></div>`
-    var avgPrice = `<div><span id="avgPrice"></span></div>`
-    searchBox.html(choiceName + choiceAddress + avgPrice)
-}
+
+//On-click events
 
 $("#searchBtn").on("click", function (event) {
     if ($("#userInp").val() !== "") {
@@ -163,24 +167,60 @@ searchBox.on("click", "#rejectChoice", function(event) {
 
 onLoad();
 
-$("#b1").on("click", function(){
+$("#b1").on("click", function () {
     $(".budgetBox").show();
     $("#budgetTotal").text("$100");
     $(".searchCard").show();
     $(".des").hide();
-    $(".options").hide();   
+    $(".options").hide();
 })
-$("#b2").on("click", function(){
+
+$("#b2").on("click", function () {
     $(".budgetBox").show();
     $("#budgetTotal").text("$250");
     $(".searchCard").show();
     $(".des").hide();
     $(".options").hide();
 })
-$("#b3").on("click", function(){
+
+$("#b3").on("click", function () {
     $(".budgetBox").show();
     $("#budgetTotal").text("$325");
     $(".searchCard").show();
     $(".des").hide();
     $(".options").hide();
 })
+
+$("form").on("submit", function (event) {
+    event.preventDefault()
+    if ($("#userInp").val() !== "") {
+        yelpSearch();
+    }
+})
+
+$("#searchBtn").on("click", function (event) {
+    event.preventDefault();
+    if ($("#userInp").val() !== "") {
+        yelpSearch();
+    }
+})
+
+searchBox.on("click", "#selectChoice", function (event) {
+// Prompt for number of people
+    
+    showDinerNumber();
+    
+    
+// Local storage setting:
+
+    var storeSearch = $(`#userInp`).val();
+    window.localStorage.setItem('query', storeSearch);
+
+})
+
+searchBox.on("click", "#rejectChoice", function (event) {
+    resetSearch()
+})
+
+onLoad();
+
