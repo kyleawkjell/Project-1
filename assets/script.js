@@ -205,14 +205,25 @@ $("#b3").on("click", function () {
 })
 
 $("#submitBudget").on("click", function(event){
-    currentBudget = $("#budgetInp").val()
+    currentBudget = $("#budgetInp").val().split(",").join("")
     currentBudget = parseInt(currentBudget)
     $(".budgetBox").show();
-    $("#budgetTotal").text(currentBudget);
+    $("#budgetTotal").text(`$${currentBudget}`);
     $(".searchCard").show();
     $(".des").hide();
     $(".options").hide();
     console.log(currentBudget)
+})
+
+$("#userSubbedBudget").on("submit", function(event) {
+    event.preventDefault()
+    currentBudget = $("#budgetInp").val().split(",").join("")
+    currentBudget = parseInt(currentBudget)
+    $(".budgetBox").show();
+    $("#budgetTotal").text(`$${currentBudget}`);
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
 })
 
 $("#budgetReturn").on("click", function(event) {
@@ -221,7 +232,7 @@ $("#budgetReturn").on("click", function(event) {
     location.reload()
 })
 
-$("form").on("submit", function (event) {
+$("#userSearchForm").on("submit", function (event) {
     event.preventDefault()
     if ($("#userInp").val() !== "") {
         yelpSearch();
