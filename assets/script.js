@@ -36,8 +36,8 @@ function userLocation() {
             // the marker, positioned at current location
             var marker = new google.maps.Marker({ position: currentLocation, map: map });
             
-        })
-    }
+    })
+}
     
     //Google Maps functionality:
     
@@ -125,6 +125,24 @@ function userLocation() {
             console.log(currentBudget)
             $("#budgetTotal").text(`$${currentBudget}`)
         }
+
+
+        function onLoad() {
+            if (!localStorage.getItem('budget')) {
+                console.log("nothing here!");
+            } else {
+                localStorage.getItem('budget');
+                currentBudget = localStorage.getItem('budget');
+                $(".budgetBox").show();
+                $("#budgetTotal").text(currentBudget);
+                $(".searchCard").show();
+                $(".des").hide();
+                $(".options").hide();
+
+                console.log(currentBudget);
+
+            }
+        }
         
         
         //On-click events
@@ -136,19 +154,24 @@ function userLocation() {
         })
         
         searchBox.on("click", "#selectChoice", function(event) {
+            
+            runMath();
             var storeChoice = $("#choiceName").text();
             var choiceAddress = $("#choiceAddress").text();
            
             localStorage.setItem('query', searchTerm);
             localStorage.setItem('choice', storeChoice);
             localStorage.setItem('place', choiceAddress);
+            localStorage.setItem('budget', currentBudget);
             
         })
         
         searchBox.on("click", "#rejectChoice", function (event) {
             resetSearch()
         })
+    
         
+onLoad();        
 userLocation();
 
 
@@ -160,6 +183,7 @@ $("#b1").on("click", function () {
     $(".des").hide();
     $(".options").hide();
     currentBudget = 100;
+    localStorage.setItem('budget', currentBudget);
 })
 
 $("#b2").on("click", function () {
@@ -169,6 +193,7 @@ $("#b2").on("click", function () {
     $(".des").hide();
     $(".options").hide();
     currentBudget = 250
+    localStorage.setItem('budget', currentBudget);
 })
 
 $("#b3").on("click", function () {
@@ -178,6 +203,7 @@ $("#b3").on("click", function () {
     $(".des").hide();
     $(".options").hide();
     currentBudget = 325
+    localStorage.setItem('budget', currentBudget);
 })
 
 $("form").on("submit", function (event) {
