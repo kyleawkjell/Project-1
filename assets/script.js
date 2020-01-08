@@ -12,7 +12,8 @@ function resetSearch() {
     var choiceName = `<div><span id="choiceName"></span></div>`
     var choiceAddress = `<div><span id="choiceAddress"></span></div>`
     var avgPrice = `<div><span id="avgPrice"></span></div>`
-    searchBox.html(choiceName + choiceAddress + avgPrice)
+    var yelpLink = `<div><span id="yelpLink"></span></div>`
+    searchBox.html(choiceName + choiceAddress + avgPrice + yelpLink)
 }
 
 function userLocation() {
@@ -66,6 +67,7 @@ function yelpSearch() {
         var newBtns = `<button id="selectChoice">Sounds great!</button> <button id="rejectChoice">No way, Jose</button>`
         $("#choiceName").text(`Your choice: ${response.businesses[0].name}`)
         $("#choiceAddress").text(`Address: ${response.businesses[0].location.address1}`)
+        $("#yelpLink").html(`<img src="assets/yelp-favicon.png">Yelp page: <a target="blank" href="${response.businesses[0].url}">Click me!</a>`)
         searchBox.append(newBtns)
         var lat1 = response.businesses[0].coordinates.latitude;
         var lng1 = response.businesses[0].coordinates.longitude;
