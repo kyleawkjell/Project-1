@@ -3,6 +3,9 @@ var userLat
 var userLong
 var searchBox = $("#searchResults")
 var userInput = $(`#userInp`)
+var searchTerm
+var currentBudget
+var detractAmt
 
 
 function resetSearch() {
@@ -47,7 +50,7 @@ var result4 = {};
 var result5 = {};
 
 function yelpSearch() {
-    var searchTerm = $("#userInp").val()
+    searchTerm = $("#userInp").val()
     $("#userInp").val("")
     var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${userLat}&longitude=${userLong}`
     var searchBox = $("#searchResults")
@@ -100,15 +103,27 @@ function yelpSearch() {
         var avgPrice = $("#avgPrice")
         if (price === "$") {
             avgPrice.text("The average user spends $10 or less here.")
+            detractAmt = 10
         } else if (price === "$$") {
             avgPrice.text("The average user spends between $10 and $30 here.")
+            detractAmt = 20
         } else if (price === "$$$") {
             avgPrice.text("The average user spends between $30 and $60 here.")
+            detractAmt = 75
         } else if (price === "$$$$") {
             avgPrice.text("The average user spends more than $60 here.")
+            detractAmt = 100
         }
+
+        console.log(detractAmt)
     })
 
+}
+
+function runMath() {
+    currentBudget = currentBudget - detractAmt
+    console.log(currentBudget)
+    $("#budgetTotal").text(`$${currentBudget}`)
 }
 
 
@@ -120,15 +135,15 @@ $("#searchBtn").on("click", function (event) {
     }
 })
 
-searchBox.on("click", "#selectChoice", function(event) {
-    var storeSearch = userInput.val();
-    console.log(storeSearch);
+searchBox.on("click", "#selectChoice", function (event) {
+    // var storeSearch = userInput.val();
+    // console.log(storeSearch);
 
-    localStorage.setItem('query', storeSearch);
-    
+    // localStorage.setItem('query', storeSearch);
+
 })
 
-searchBox.on("click", "#rejectChoice", function(event) {
+searchBox.on("click", "#rejectChoice", function (event) {
     resetSearch()
 })
 
@@ -142,6 +157,7 @@ $("#b1").on("click", function () {
     $(".searchCard").show();
     $(".des").hide();
     $(".options").hide();
+    currentBudget = 100;
 })
 
 $("#b2").on("click", function () {
@@ -150,6 +166,7 @@ $("#b2").on("click", function () {
     $(".searchCard").show();
     $(".des").hide();
     $(".options").hide();
+    currentBudget = 250
 })
 
 $("#b3").on("click", function () {
@@ -158,6 +175,7 @@ $("#b3").on("click", function () {
     $(".searchCard").show();
     $(".des").hide();
     $(".options").hide();
+    currentBudget = 325
 })
 
 $("form").on("submit", function (event) {
@@ -175,16 +193,18 @@ $("#searchBtn").on("click", function (event) {
 })
 
 searchBox.on("click", "#selectChoice", function (event) {
-// Prompt for number of people
-    
-    showDinerNumber();
-    
-    
-// Local storage setting:
+    // Prompt for number of people
 
-    var storeSearch = $(`#userInp`).val();
+    // showDinerNumber();
+
+    // Local storage setting:
+
+    var storeSearch = searchTerm;
     window.localStorage.setItem('query', storeSearch);
 
+    // Run math functionality
+
+    runMath()
 })
 
 searchBox.on("click", "#rejectChoice", function (event) {
