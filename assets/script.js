@@ -191,5 +191,3 @@ searchBox.on("click", "#rejectChoice", function (event) {
     resetSearch()
 })
 
-onLoad();
-
