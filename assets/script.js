@@ -6,6 +6,8 @@ var userInput = $(`#userInp`)
 var searchTerm = $("#userInp").val();
 var currentBudget
 var detractAmt
+var historyLink = $("#historyLink");
+var userChoices = $("#userChoices");
 
 
 function resetSearch() {
@@ -39,8 +41,6 @@ function userLocation() {
 
     })
 }
-
-//Google Maps functionality:
 
 var lat;
 var lng;
@@ -116,18 +116,11 @@ function yelpSearch() {
             avgPrice.text("The average user spends more than $60 here.")
             detractAmt = 100
         }
-
+        
         console.log(detractAmt)
     })
-
+    
 }
-
-function runMath() {
-    currentBudget = currentBudget - detractAmt
-    console.log(currentBudget)
-    $("#budgetTotal").text(`$${currentBudget}`)
-}
-
 
 function onLoad() {
     if (!localStorage.getItem('budget')) {
@@ -146,7 +139,7 @@ function onLoad() {
     }
 }
 
-function showBudgetDiv(){
+function showBudgetDiv() {
     localStorage.setItem('budget', currentBudget);
     $(".budgetBox").show();
     $(".searchCard").show();
@@ -154,21 +147,38 @@ function showBudgetDiv(){
     $(".options").hide();
 }
 
-//On-click events
-
 $("#searchBtn").on("click", function (event) {
     if ($("#userInp").val() !== "") {
         yelpSearch();
     }
 })
 
-searchBox.on("click", "#rejectChoice", function (event) {
-    resetSearch()
-})
+function runMath() {
+    currentBudget = currentBudget - detractAmt
+    console.log(currentBudget)
+    $("#budgetTotal").text(`$${currentBudget}`)
+}
+
+function historyOnLoad() {
+    // $(`#userChoices`).append = window.localStorage.getItem('choice');
+
+    // console.log(window.localStorage.getItem('choice'));
+
+    // userChoices.text = window.localStorage.getItem('choice');
+
+    // console.log(userChoices.text);
+
+    // $(`#userChoices`).prepend = userChoices.text;
+
+    console.log(localStorage.getItem('store'));
+
+    $(`#userChoices`).text(localStorage.getItem('store'));
+
+    console.log(window.localStorage.choice);
+}
 
 
-onLoad();
-userLocation();
+//On-click events
 
 $("#b1").on("click", function () {
     $("#budgetTotal").text("$100");
@@ -219,7 +229,7 @@ $(".material-icons").on("click", function (event) {
 })
 
 searchBox.on("click", "#selectChoice", function (event) {
-    
+
     // Local storage setting:
     runMath()
 
@@ -235,6 +245,14 @@ searchBox.on("click", "#selectChoice", function (event) {
 
     // showDinerNumber();
 
+    // Local storage setting:
+
+    var storeSearch = searchTerm;
+    window.localStorage.setItem('query', storeSearch);
+    console.log(storeSearch);
+    window.localStorage.setItem('store', choiceName.textContent);
+    console.log(choiceName.textContent);
+
 
     // Run math functionality
 
@@ -246,3 +264,7 @@ searchBox.on("click", "#rejectChoice", function (event) {
     $(".hideSearchArea").show();
     resetSearch()
 })
+
+historyOnLoad();
+onLoad();
+userLocation();
