@@ -121,10 +121,15 @@ $("#searchBtn").on("click", function (event) {
 })
 
 searchBox.on("click", "#selectChoice", function(event) {
+    var 
+    
     var storeSearch = userInput.val();
     console.log(storeSearch);
+    var storeChoice = $(`#choiceName`).value;
+    console.log(storeChoice);
 
     localStorage.setItem('query', storeSearch);
+    localStorage.setItem('choice', storeChoice)
     
 })
 
