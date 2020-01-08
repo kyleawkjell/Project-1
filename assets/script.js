@@ -224,12 +224,34 @@ function userLocation() {
 })
 
 $("#submitBudget").on("click", function(event){
-    currentBudget = $("#budgetInp").val()
+    currentBudget = $("#budgetInp").val().split(",").join("")
     currentBudget = parseInt(currentBudget)
+    $(".budgetBox").show();
+    $("#budgetTotal").text(`$${currentBudget}`);
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
     console.log(currentBudget)
 })
 
-$("form").on("submit", function (event) {
+$("#userSubbedBudget").on("submit", function(event) {
+    event.preventDefault()
+    currentBudget = $("#budgetInp").val().split(",").join("")
+    currentBudget = parseInt(currentBudget)
+    $(".budgetBox").show();
+    $("#budgetTotal").text(`$${currentBudget}`);
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
+})
+
+$("#budgetReturn").on("click", function(event) {
+    currentBudget = ""
+    localStorage.setItem('budget', currentBudget);
+    location.reload()
+})
+
+$("#userSearchForm").on("submit", function (event) {
     event.preventDefault()
     if ($("#userInp").val() !== "") {
         yelpSearch();
