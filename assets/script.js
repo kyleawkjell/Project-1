@@ -30,13 +30,17 @@ function userLocation() {
         console.log(userLong);
         
         var currentLocation = { lat: userLat, lng: userLong };
+
+        console.log(currentLocation);
         
         // the map, centered on current location
         var map = new google.maps.Map(
-            document.getElementById("map"), { zoom: 12, center: currentLocation });
+            document.getElementById("map"), { zoom: 12, center: { lat: currentLocation.lat, lng: currentLocation.lng} });
             
             // the marker, positioned at current location
             var marker = new google.maps.Marker({ position: currentLocation, map: map });
+
+            console.log(currentLocation.lat);
             
         })
     }
@@ -204,6 +208,11 @@ function userLocation() {
         }
         
         
+        userLocation();
+        historyOnLoad();
+        onLoad();
+        
+        
         //On-click events
         
         $("#searchBtn").on("click", function (event) {
@@ -215,11 +224,6 @@ function userLocation() {
         searchBox.on("click", "#rejectChoice", function (event) {
             resetSearch()
         })
-        
-        
-        historyOnLoad();
-        onLoad();
-        userLocation();
         
         
         $("#b1").on("click", function () {
