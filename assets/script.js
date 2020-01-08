@@ -7,7 +7,9 @@ var searchTerm = $("#userInp").val();
 var currentBudget
 var detractAmt
 var historyLink = $("#historyLink");
+var userChoices = $("#userChoices");
 
+historyOnLoad();
 
 function resetSearch() {
     var choiceName = `<div><span id="choiceName"></span></div>`
@@ -144,6 +146,28 @@ function userLocation() {
 
             }
         }
+
+        function historyOnLoad() {
+            // $(`#userChoices`).append = window.localStorage.getItem('choice');
+
+            // console.log(window.localStorage.getItem('choice'));
+
+            // userChoices.text = window.localStorage.getItem('choice');
+
+            // console.log(userChoices.text);
+
+            // $(`#userChoices`).prepend = userChoices.text;
+
+            console.log(localStorage.getItem('store'));
+
+            $(`#userChoices`).text(localStorage.getItem('store'));
+
+            console.log(window.localStorage.choice);
+
+
+
+
+        }
         
         
         //On-click events
@@ -168,8 +192,10 @@ function userLocation() {
             console.log(storeChoice);
             
             
-            
-            $("#populateChoice").text(storeChoice);
+            var choices = localStorage.getItem('choice');
+            console.log(choices);
+
+            $("#userChoices").append(choices);
             
         })
         
@@ -177,21 +203,10 @@ function userLocation() {
             resetSearch()
         })
         
-        function populateHistory() {
-            var newDiv = `<div id="populateChoice"></div><div id="populateAddress"></div>`;
-            $("#historyPop").append(newDiv);
-            
-        }
 
         onLoad();        
         userLocation();
         
-        historyLink.on("click", function() {
-            
-            alert("success");
-            populateHistory();
-            
-        })
         
         $("#b1").on("click", function () {
             $(".budgetBox").show();
@@ -274,12 +289,17 @@ searchBox.on("click", "#selectChoice", function (event) {
 
     var storeSearch = searchTerm;
     window.localStorage.setItem('query', storeSearch);
+    console.log(storeSearch);
+    window.localStorage.setItem('store', choiceName.textContent);
+    console.log(choiceName.textContent);
+
 
     // Run math functionality
 
     runMath()
     resetSearch()
 })
+
 
 searchBox.on("click", "#rejectChoice", function (event) {
     resetSearch()
