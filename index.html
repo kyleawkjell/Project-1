@@ -37,54 +37,56 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col s12">
-            <div class="container options">
-                <div class="row">
-                    <div class="col s2"></div>
-                    <div class="col s3">
-                        <div class="section">
-                            <a class="waves-effect waves-light btn" id="b1"><i
-                                    class="material-icons left">monetization_on</i>100</a>
+    
+    <div class="container" id="mainPage">
+        <div class="row">
+            <div class="col s12">
+                <div class="section">
+                    <p>Select your own budget:</p>
+                    <form id="userSubbedBudget">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix col s1">attach_money</i>
+                            <input class="budgetInp" id="icon_prefix" type="text" class="validate"></input>
                         </div>
-                    </div>
-                    <div class="col s3">
-                        <div class="section">
-                            <a class="waves-effect waves-light btn" id="b2"><i
-                                    class="material-icons left">monetization_on</i>250</a>
+                        <button class="waves-effect waves-light btn light-blue lighten-1" id="submitBudget">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-wrapper" id="ifNaN">
+                    <div class="modal">
+                        <div class="head">
                         </div>
-                    </div>
-                    <div class="col s3">
-                        <div class="section">
-                            <a class="waves-effect waves-light btn" id="b3"><i
-                                    class="material-icons left">monetization_on</i>325</a>
+                        <div class="content">
+                            <div class="good-job">
+                                <i class="fa fa-thumbs-o-up"></i>
+                                <h1>Sorry, looks like that isn't a real number.</h1>
+                                <button id="backToLanding">Take me Back</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col s12">
-                        <div class="section">
-                            <p>Select your own budget:</p>
-                            <form id="userSubbedBudget">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix col s1">attach_money</i>
-                                    <input class="budgetInp" id="icon_prefix" type="text" class="validate"></input>
-                                </div>
-                                <button class="waves-effect waves-light btn light-blue lighten-1" id="submitBudget">Submit</button>
-                            </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="container options">
+                    <div class="row">
+                        <div class="col s2"></div>
+                        <div class="col s3">
+                            <div class="section">
+                                <a class="waves-effect waves-light btn" id="b1"><i
+                                        class="material-icons left">monetization_on</i>100</a>
+                            </div>
                         </div>
-                        <div class="modal-wrapper" id="ifNaN">
-                            <div class="modal">
-                                <div class="head">
-                                </div>
-                                <div class="content">
-                                    <div class="good-job">
-                                        <i class="fa fa-thumbs-o-up"></i>
-                                        <h1>Sorry, looks like that isn't a real number.</h1>
-                                        <button id="backToLanding">Take me Back</button>
-                                    </div>
-                                </div>
+                        <div class="col s3">
+                            <div class="section">
+                                <a class="waves-effect waves-light btn" id="b2"><i
+                                        class="material-icons left">monetization_on</i>250</a>
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="section">
+                                <a class="waves-effect waves-light btn" id="b3"><i
+                                        class="material-icons left">monetization_on</i>325</a>
                             </div>
                         </div>
                     </div>

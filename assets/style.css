@@ -79,7 +79,6 @@
 #submitBudget {
     background-color: teal;
     color: white;
-
 }
 
 #remainingBudget {
@@ -127,9 +126,9 @@
 #histroy {
     position: center;
 }
-.body1 {
+body {
     background-color: #f4f3f1;
-    background-image: url(../images/Chilli-Hotdog-The-Boot-Room-LFC-Liverpool-Football-Club-Anfield.jpg);
+    background-image: url(../images/Zuccini-Boats-Courgette-Pizza-Salted-Mint.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;    
@@ -168,3 +167,8 @@
 .choiceButtons {
     padding-top: 20px;
 }
+
+#mainPage {
+    background-color: white;
+}
+
