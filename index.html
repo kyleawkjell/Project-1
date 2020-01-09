@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class ="row">
+                <div class="row">
                     <div class="col s12">
                         <div class="section">
                             <p>Select your own budget:</p>
@@ -71,8 +71,21 @@
                                     <i class="material-icons prefix col s1">attach_money</i>
                                     <input class="budgetInp" id="icon_prefix" type="text" class="validate"></input>
                                 </div>
-                                <button id="submitBudget">Submit</button>
+                                <button class="waves-effect waves-light btn" id="submitBudget">Submit</button>
                             </form>
+                        </div>
+                        <div class="modal-wrapper" id="ifNaN">
+                            <div class="modal">
+                                <div class="head">
+                                </div>
+                                <div class="content">
+                                    <div class="good-job">
+                                        <i class="fa fa-thumbs-o-up"></i>
+                                        <h1>Sorry, looks like that isn't a real number.</h1>
+                                        <button id="backToLanding">Take me Back</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,14 +104,15 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 
     <div class="container searchCard">
         <div class="row">
             <div class="col s12">
                 <div class="card-panel white">
                     <div class="row hideSearchArea">
-                        <button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></button>
+                        <button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i
+                                class="material-icons">search</i></button>
                         <form id="userSearchForm" class="col s11">
                             <div class="row">
                                 <div class="input-field col s12">
@@ -107,7 +121,7 @@
                                 </div>
                             </div>
                         </form>
-                    </form>
+                        </form>
                     </div>
                     <div class="row">
                         <div id="searchResults">
@@ -131,11 +145,12 @@
             </div>
         </div>
     </div>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTGeXn6uxwlPcg4jxLrqN01gzNn9RfAI">
-    console.log(map);
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTGeXn6uxwlPcg4jxLrqN01gzNn9RfAI">
+        console.log(map);
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/bpopup.js"></script>
     <script type="text/javascript" src="assets/script.js"></script>
 </body>
 
