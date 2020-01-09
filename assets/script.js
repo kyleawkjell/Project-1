@@ -111,7 +111,7 @@ function yelpSearch() {
             detractAmt = 20
         } else if (price === "$$$") {
             avgPrice.text("The average user spends between $30 and $60 here.")
-            detractAmt = 75
+            detractAmt = 45
         } else if (price === "$$$$") {
             avgPrice.text("The average user spends more than $60 here.")
             detractAmt = 100
@@ -201,16 +201,7 @@ $("#b3").on("click", function () {
 
 $("#userSubbedBudget").on("submit", function (event) {
     event.preventDefault()
-    currentBudget = $("#budgetInp").val().split(",").join("")
-    currentBudget = parseInt(currentBudget)
-    $("#budgetTotal").text(`$${currentBudget}`);
-    showBudgetDiv()
-})
-
-$("#userSubbedBudget").on("click", function (event) {
-    console.log(event.target)
-    event.preventDefault()
-    currentBudget = $("#budgetInp").val().split(",").join("")
+    currentBudget = $(".budgetInp").val().split(",").join("")
     currentBudget = parseInt(currentBudget)
     $("#budgetTotal").text(`$${currentBudget}`);
     showBudgetDiv()
@@ -241,7 +232,7 @@ $(".material-icons").on("click", function (event) {
 searchBox.on("click", "#selectChoice", function (event) {
 
     // Local storage setting:
-    runMath()
+    // runMath()
 
     var storeChoice = $("#choiceName").text();
     var locAddress = $("#choiceAddress").text();
@@ -252,7 +243,13 @@ searchBox.on("click", "#selectChoice", function (event) {
     localStorage.setItem('budget', currentBudget);
 
     // Prompt for number of people
+    var numberBtns = `<button id="numberPeople1">All by yourself...</button> <button id="numberPeople2">It's a date!</button> <button id="numberPeople3">Third wheel yikes</button>`
 
+    searchBox.empty();
+
+    searchBox.text("Please select your number of diners: ");
+
+    searchBox.append(numberBtns);
     // showDinerNumber();
 
     // Local storage setting:
@@ -266,11 +263,30 @@ searchBox.on("click", "#selectChoice", function (event) {
 
     // Run math functionality
 
+    // $(".hideSearchArea").show();
+    // resetSearch()
+})
+
+searchBox.on("click", "#rejectChoice", function (event) {
     $(".hideSearchArea").show();
     resetSearch()
 })
 
-searchBox.on("click", "#rejectChoice", function (event) {
+searchBox.on("click", "#numberPeople1", function (event) {
+    detractAmt = (detractAmt * 1);
+    runMath();
+    $(".hideSearchArea").show();
+    resetSearch()
+})
+searchBox.on("click", "#numberPeople2", function (event) {
+    detractAmt = (detractAmt * 2);
+    runMath();
+    $(".hideSearchArea").show();
+    resetSearch()
+})
+searchBox.on("click", "#numberPeople3", function (event) {
+    detractAmt = (detractAmt * 3);
+    runMath();
     $(".hideSearchArea").show();
     resetSearch()
 })
