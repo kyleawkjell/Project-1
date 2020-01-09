@@ -100,7 +100,6 @@
     position: center;
     margin: 0 auto;
     background-color: #ece7e4;
-    height: 300px;
     width: 650px;
     border-radius: 30px;
 }
@@ -153,8 +152,10 @@ body {
     color: white;
     text-align: center;
     margin-top: 15px;
+    margin-bottom: 15px;
     padding-bottom: 15px;
     padding: 30px;
+    font-size: 25px;
 }
 
 #choiceName {
