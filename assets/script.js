@@ -8,6 +8,11 @@ var currentBudget
 var detractAmt
 var historyLink = $("#historyLink");
 var userChoices = $("#userChoices");
+var populateChoice = $(`#populateChoice`);
+
+var locationArray = [];
+var addressArray  = [];
+
 
 
 function resetSearch() {
@@ -153,9 +158,43 @@ function runMath() {
 
 function historyOnLoad() {
 
-    $(`#userChoices`).text(localStorage.getItem('choice'));
+   var allChoices = JSON.parse(localStorage.getItem('choices'));
+   var allAddresses = JSON.parse(localStorage.getItem('places'));
 
-    $(`#choiceAddress`).text(localStorage.getItem('place'));
+   console.log(allAddresses);
+
+   console.log(allAddresses[0]);
+
+   for (var i = 0; i < allAddresses.length; i++) {
+       var publishDivs  = `<p id="userChoices"></p> <p id="choiceAddress"></p>`;
+       populateChoice.prepend(publishDivs);
+
+       $(`#userChoices`).text(allChoices[i]);
+       $(`#choiceAddress`).text(allAddresses[i]);
+
+   }
+   
+   
+   
+   
+   
+    var publishDivs = `<p id="userChoices"></p> <p id="choiceAddress"></p>`;
+
+    populateChoice.prepend(publishDivs);
+
+
+
+    console.log(JSON.parse(localStorage.getItem('choices')));
+
+    console.log(JSON.parse(localStorage.getItem('places')));
+
+
+
+
+    // $(`#userChoices`).text(JSON.parse(localStorage.getItem('choices').split(",")));
+    // $(`#choiceAddress`).text(localStorage.getItem('places'));
+
+    
 }
 
 
@@ -180,15 +219,9 @@ $("#b3").on("click", function () {
 })
 
 $("#userSubbedBudget").on("submit", function (event) {
-    event.preventDefault()
-    currentBudget = $("#budgetInp").val().split(",").join("")
-    currentBudget = parseInt(currentBudget)
-    $("#budgetTotal").text(`$${currentBudget}`);
-    showBudgetDiv()
-})
-
-$("#userSubbedBudget").on("click", function (event) {
     console.log(event.target)
+
+
     event.preventDefault()
     currentBudget = $("#budgetInp").val().split(",").join("")
     currentBudget = parseInt(currentBudget)
@@ -231,18 +264,31 @@ searchBox.on("click", "#selectChoice", function (event) {
     localStorage.setItem('place', locAddress);
     localStorage.setItem('budget', currentBudget);
 
+    locationArray.push(storeChoice);
+    addressArray.push(locAddress);
+
+    console.log(JSON.stringify(locationArray));
+
+    var locationString = JSON.stringify(locationArray);
+    var addressString = JSON.stringify(addressArray);
+
+    localStorage.setItem('choices', locationString);
+    localStorage.setItem('places', addressString);
+
+
+
+
+
+    
+    
+    
     // Prompt for number of people
+    
 
     // showDinerNumber();
 
-    // Local storage setting:
 
-    // var storeSearch = searchTerm;
-    // window.localStorage.setItem('query', storeSearch);
-    // console.log(storeSearch);
-    // window.localStorage.setItem('store', choiceName.textContent);
-    // console.log(choiceName.textContent);
-
+    
 
     // Run math functionality
 
