@@ -56,7 +56,7 @@ var result5 = {};
 function yelpSearch() {
     searchTerm = $("#userInp").val()
     $("#userInp").val("")
-    var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${userLat}&longitude=${userLong}`
+    var yelpQueryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${userLat}&longitude=${userLong}`
     var searchBox = $("#searchResults")
     $.ajax({
         url: yelpQueryURL,
