@@ -247,15 +247,15 @@ searchBox.on("click", "#selectChoice", function (event) {
 
     locationArray.push(storeChoice);
     addressArray.push(locAddress);
-    linkArray.push(link);
+
 
     var locationString = JSON.stringify(locationArray);
     var addressString = JSON.stringify(addressArray);
-    var linkString = JSON.stringify(linkArray);
+
 
     localStorage.setItem('choices', locationString);
     localStorage.setItem('places', addressString);
-    localStorage.setItem('links', linkString);
+
 
     var numberBtns = `<button class="waves-effect waves-light btn amber darken-3" id="numberPeople1">All by yourself...</button> <button class="waves-effect waves-light btn light-green darken-3" id="numberPeople2">It's a date!</button> <button class="waves-effect waves-light btn deep-purple lighten-3" id="numberPeople3">Third wheel yikes</button>`
 
