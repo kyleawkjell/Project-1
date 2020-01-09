@@ -115,6 +115,7 @@
     font-family: 'Playfair Display', serif;
     text-align: center;
     font-style: italic;
+    padding-top: 20px;
 }
 .headerFont2 {
     color: black;
@@ -146,6 +147,7 @@ body {
     margin-top: 15px;
     padding-bottom: 15px;
     padding: 30px;
+    border-radius: 30px;
 }
 
 #choiceName {
@@ -185,4 +187,8 @@ body {
 
 *, ::before, ::after {
     box-sizing: unset;
+}
+
+.clearing {
+    text-align: center;
 }
