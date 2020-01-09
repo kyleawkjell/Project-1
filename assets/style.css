@@ -92,10 +92,10 @@
     color: black;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    text-align: center;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    font-size: 82px;
+    height: auto;
+    margin: auto;
+    padding-bottom: 10px;
+    font-size: 70px;
 }
 .box2 {
     position: center;
@@ -145,7 +145,7 @@
     background-size: 1600px;
 
 }
-li {
+#starbucks {
      height: 30px;
      width: 490px ;
      background-color: #004256;

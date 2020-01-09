@@ -9,6 +9,7 @@ var detractAmt
 var historyLink = $("#historyLink");
 var userChoices = $("#userChoices");
 var populateChoice = $(`#populateChoice`);
+var mainText = $(`#mainText`);
 
 var locationArray = [];
 var addressArray = [];
@@ -73,14 +74,8 @@ function yelpSearch() {
         searchBox.append(newBtns)
         var lat1 = response.businesses[0].coordinates.latitude;
         var lng1 = response.businesses[0].coordinates.longitude;
-        var lat2 = response.businesses[1].coordinates.latitude;
-        var lng2 = response.businesses[1].coordinates.longitude;
-        var lat3 = response.businesses[2].coordinates.latitude;
-        var lng3 = response.businesses[2].coordinates.longitude;
-        var lat4 = response.businesses[3].coordinates.latitude;
-        var lng4 = response.businesses[3].coordinates.longitude;
-        var lat5 = response.businesses[4].coordinates.latitude;
-        var lng5 = response.businesses[4].coordinates.longitude;
+        var link = response.businesses[0].url;
+        console.log(link);
 
         var lat = response.region.center.latitude;
         var lng = response.region.center.longitude;
@@ -161,14 +156,14 @@ function historyOnLoad() {
 
    for (var i = 0; i < allAddresses.length; i++) {
        var publishDivs  = `<p id="userChoices"></p> <p id="choiceAddress"></p> <p id="choiceLinks"></p>`;
-       populateChoice.prepend(publishDivs);
+        mainText.prepend(publishDivs);
 
         $(`#userChoices`).text(allChoices[i]);
         $(`#choiceAddress`).text(allAddresses[i]);
 
+        
    }
    
-    populateChoice.prepend(publishDivs);
 
 }
 
