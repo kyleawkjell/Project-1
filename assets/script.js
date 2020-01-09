@@ -175,6 +175,7 @@ function historyOnLoad() {
     $(`#userChoices`).text(localStorage.getItem('store'));
 
     console.log(window.localStorage.choice);
+    $(`#choiceAddress`).text(localStorage.getItem('place'));
 }
 
 
@@ -199,6 +200,15 @@ $("#b3").on("click", function () {
 })
 
 $("#userSubbedBudget").on("submit", function (event) {
+    event.preventDefault()
+    currentBudget = $("#budgetInp").val().split(",").join("")
+    currentBudget = parseInt(currentBudget)
+    $("#budgetTotal").text(`$${currentBudget}`);
+    showBudgetDiv()
+})
+
+$("#userSubbedBudget").on("click", function (event) {
+    console.log(event.target)
     event.preventDefault()
     currentBudget = $("#budgetInp").val().split(",").join("")
     currentBudget = parseInt(currentBudget)
@@ -234,11 +244,11 @@ searchBox.on("click", "#selectChoice", function (event) {
     runMath()
 
     var storeChoice = $("#choiceName").text();
-    var choiceAddress = $("#choiceAddress").text();
+    var locAddress = $("#choiceAddress").text();
 
     localStorage.setItem('query', searchTerm);
     localStorage.setItem('choice', storeChoice);
-    localStorage.setItem('place', choiceAddress);
+    localStorage.setItem('place', locAddress);
     localStorage.setItem('budget', currentBudget);
 
     // Prompt for number of people
@@ -247,11 +257,11 @@ searchBox.on("click", "#selectChoice", function (event) {
 
     // Local storage setting:
 
-    var storeSearch = searchTerm;
-    window.localStorage.setItem('query', storeSearch);
-    console.log(storeSearch);
-    window.localStorage.setItem('store', choiceName.textContent);
-    console.log(choiceName.textContent);
+    // var storeSearch = searchTerm;
+    // window.localStorage.setItem('query', storeSearch);
+    // console.log(storeSearch);
+    // window.localStorage.setItem('store', choiceName.textContent);
+    // console.log(choiceName.textContent);
 
 
     // Run math functionality
