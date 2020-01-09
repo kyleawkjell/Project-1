@@ -287,6 +287,15 @@ searchBox.on("click", "#numberPeople3", function (event) {
     resetSearch()
 })
 
+$("#clearBtn").on("click", function(event) {
+    locationArray = []
+    addressArray = []
+    localStorage.setItem('choices', JSON.stringify(locationArray));
+    localStorage.setItem('places', JSON.stringify(addressArray));
+    location.reload()
+
+})
+
 historyOnLoad();
 onLoad();
 userLocation();
