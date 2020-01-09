@@ -76,7 +76,6 @@ function yelpSearch() {
         searchBox.append(newBtns)
         var lat1 = response.businesses[0].coordinates.latitude;
         var lng1 = response.businesses[0].coordinates.longitude;
-        link = response.businesses[0].url;
 
         var lat = response.region.center.latitude;
         var lng = response.region.center.longitude;
@@ -238,7 +237,6 @@ searchBox.on("click", "#selectChoice", function (event) {
     var storeChoice = $("#choiceName").text();
     var locAddress = $("#choiceAddress").text();
 
-
     localStorage.setItem('query', searchTerm);
     localStorage.setItem('choice', storeChoice);
     localStorage.setItem('place', locAddress);
@@ -287,6 +285,15 @@ searchBox.on("click", "#numberPeople3", function (event) {
     runMath();
     $(".hideSearchArea").show();
     resetSearch()
+})
+
+$("#clearBtn").on("click", function(event) {
+    locationArray = []
+    addressArray = []
+    localStorage.setItem('choices', JSON.stringify(locationArray));
+    localStorage.setItem('places', JSON.stringify(addressArray));
+    location.reload()
+
 })
 
 historyOnLoad();
