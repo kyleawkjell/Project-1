@@ -19,7 +19,7 @@
             <div class="nav-wrapper">
                 <a href="#!" class="brand-logo center">Budget Buddy</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="history.html">Search History</a></li>
+                    <li><a id="historyLink" href="history.html">Search History</a></li>
                 </ul>
             </div>
         </nav>
@@ -62,6 +62,18 @@
                         </div>
                     </div>
                 </div>
+                <div class ="row">
+                    <div>
+                        <div class="section">
+                            <p>Select your own budget:</p>
+                            <i class="material-icons prefix">attach_money</i>
+                            <form id="userSubbedBudget">
+                            <input id="budgetInp"></input>
+                            <a class="waves-effect waves-light btn purple" id="submitBudget">Submit</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -70,33 +82,33 @@
         <div class="row">
             <div class="col s2"></div>
             <div class="col s8">
-                <div class="box">
+                <div id="budgetDiv" class="box">
+                    <p id="remainingBudget">Remaining Budget</p>
                     <p id="budgetTotal"></p>
+                    <button class="waves-effect waves-light btn" id="budgetReturn">Return to Budget Selection</button>
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 
     <div class="container searchCard">
         <div class="row">
             <div class="col s12">
                 <div class="card-panel white">
-                    <div class="row">
-                        <a id="searchBtn" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
-                        <form class="col s11">
+                    <div class="row hideSearchArea">
+                        <button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></button>
+                        <form id="userSearchForm" class="col s11">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <textarea id="userInp" class="materialize-textarea"></textarea>
+                                    <input id="userInp" class="materialize-textarea">
                                     <label class="active" for="userInp">Restaurant Search</label>
                                 </div>
                             </div>
                         </form>
+                    </form>
                     </div>
                     <div class="row">
                         <div id="searchResults">
-                            <div><span id="choiceName"></span></div>
-                            <div><span id="choiceAddress"></span></div>
-                            <div><span id="choicePrice"></span></div>
                         </div>
                     </div>
                     <div class="row">
@@ -117,9 +129,8 @@
             </div>
         </div>
     </div>
-
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTGeXn6uxwlPcg4jxLrqN01gzNn9RfAI&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTGeXn6uxwlPcg4jxLrqN01gzNn9RfAI">
     console.log(map);
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

@@ -1,15 +1,46 @@
 var price
 var userLat
 var userLong
+var searchBox = $("#searchResults")
+var userInput = $(`#userInp`)
+var searchTerm = $("#userInp").val();
+var currentBudget
+var detractAmt
+var historyLink = $("#historyLink");
+var userChoices = $("#userChoices");
 
-function onLoad() {
-    navigator.geolocation.getCurrentPosition(function (position) {
-        userLat = position.coords.latitude
-        userLong = position.coords.longitude
-    })
+
+function resetSearch() {
+    var choiceName = `<div><span id="choiceName"></span></div>`
+    var choiceAddress = `<div><span id="choiceAddress"></span></div>`
+    var avgPrice = `<div><span id="avgPrice"></span></div>`
+    var yelpLink = `<div><span id="yelpLink"></span></div>`
+    searchBox.html(choiceName + choiceAddress + avgPrice + yelpLink)
 }
 
-//Google Maps functionality:
+function userLocation() {
+    var queryURL = "https://geolocation-db.com/json/";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        userLat = JSON.parse(response).latitude;
+        console.log(userLat);
+        userLong = JSON.parse(response).longitude;
+        console.log(userLong);
+
+        var currentLocation = { lat: userLat, lng: userLong };
+
+        // the map, centered on current location
+        var map = new google.maps.Map(
+            document.getElementById("map"), { zoom: 12, center: currentLocation });
+
+        // the marker, positioned at current location
+        var marker = new google.maps.Marker({ position: currentLocation, map: map });
+
+    })
+}
 
 var lat;
 var lng;
@@ -19,48 +50,13 @@ var result3 = {};
 var result4 = {};
 var result5 = {};
 
-function initMap() {
-    // the location
-    var Denver = { lat: 39.739, lng: -104.990 };
-
-    // the map, centered on Denver
-    var map = new google.maps.Map(
-        document.getElementById("map"), { zoom: 12, center: Denver });
-
-    // the marker, positioned at Denver
-    var marker = new google.maps.Marker({ position: Denver, map: map });
-}
-
-function newMap() {
-    // location
-    var newCity = { lat, lng };
-
-    //the map, centered on location
-    var map = new google.maps.Map(
-        document.getElementById("map"), { zoom: 12, center: newCity });
-
-    // the marker, positioned on newCity
-    var marker = new google.maps.Marker({ position: newCity, map: map });
-}
-
-function renderMarkers() {
-    //location
-    var newCity = { lat, lng };
-
-    //the map, centered on location
-    var map = new google.maps.Map(
-        document.getElementById("map"), { zoom: 12, center: newCity });
-
-    // five new markers for the restaurants
-    var marker1 = new google.maps.Marker({ position: result1, map: map });
-    var marker2 = new google.maps.Marker({ position: result2, map: map });
-    var marker3 = new google.maps.Marker({ position: result3, map: map });
-    var marker4 = new google.maps.Marker({ position: result4, map: map });
-    var marker5 = new google.maps.Marker({ position: result5, map: map });
-}
-
 function yelpSearch() {
+<<<<<<< HEAD
     var searchTerm = $("#userInp").val()
+=======
+    searchTerm = $("#userInp").val()
+    $("#userInp").val("")
+>>>>>>> 548951022f74eb84672f52cf892ec9f4f379cc34
     var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${userLat}&longitude=${userLong}`
     var searchBox = $("#searchResults")
     $.ajax({
@@ -71,12 +67,12 @@ function yelpSearch() {
         }
     }).then(function (response) {
         console.log(response)
-        var newBtns = `<button>Sounds great!</button> <button>No way, Jose</button>`
+        resetSearch();
+        var newBtns = `<button id="selectChoice">Sounds great!</button> <button id="rejectChoice">No way, Jose</button>`
         $("#choiceName").text(`Your choice: ${response.businesses[0].name}`)
         $("#choiceAddress").text(`Address: ${response.businesses[0].location.address1}`)
-        $("#choicePrice").text(`Price: ${response.businesses[0].price}`)
+        $("#yelpLink").html(`<img src="assets/yelp-favicon.png">Yelp page: <a target="blank" href="${response.businesses[0].url}">Click me!</a>`)
         searchBox.append(newBtns)
-
         var lat1 = response.businesses[0].coordinates.latitude;
         var lng1 = response.businesses[0].coordinates.longitude;
         var lat2 = response.businesses[1].coordinates.latitude;
@@ -91,62 +87,198 @@ function yelpSearch() {
         var lat = response.region.center.latitude;
         var lng = response.region.center.longitude;
 
-        var newCity = {lat: lat, lng: lng};
-        
-        var restaurant1 = {lat: lat1, lng: lng1};
-        var restaurant2 = {lat: lat2, lng: lng2};
-        var restaurant3 = {lat: lat3, lng: lng3};
-        var restaurant4 = {lat: lat4, lng: lng4};
-        var restaurant5 = {lat: lat5, lng: lng5};
+        var newCity = { lat: lat, lng: lng };
+
+        var restaurant1 = { lat: lat1, lng: lng1 };
+        var restaurant2 = { lat: lat2, lng: lng2 };
+        var restaurant3 = { lat: lat3, lng: lng3 };
+        var restaurant4 = { lat: lat4, lng: lng4 };
+        var restaurant5 = { lat: lat5, lng: lng5 };
 
         $(`#map`).html = "";
         var map = new google.maps.Map(
-            document.getElementById("map"), {zoom: 12, center: newCity});
+            document.getElementById("map"), { zoom: 12, center: newCity });
 
-        var marker1 = new google.maps.Marker({position: restaurant1, map: map});
-        var marker2 = new google.maps.Marker({position: restaurant2, map: map});
-        var marker3 = new google.maps.Marker({position: restaurant3, map: map});
-        var marker4 = new google.maps.Marker({position: restaurant4, map: map});
-        var marker5 = new google.maps.Marker({position: restaurant5, map: map});
+        var marker1 = new google.maps.Marker({ position: restaurant1, map: map });
+        var marker2 = new google.maps.Marker({ position: restaurant2, map: map });
+        var marker3 = new google.maps.Marker({ position: restaurant3, map: map });
+        var marker4 = new google.maps.Marker({ position: restaurant4, map: map });
+        var marker5 = new google.maps.Marker({ position: restaurant5, map: map });
 
         var price = response.businesses[0].price;
+        var avgPrice = $("#avgPrice")
         if (price === "$") {
-            searchBox.append("The average user spends $10 or less here.")
+            avgPrice.text("The average user spends $10 or less here.")
+            detractAmt = 10
         } else if (price === "$$") {
-            searchBox.append("The average user spends between $10 and $30 here.")
+            avgPrice.text("The average user spends between $10 and $30 here.")
+            detractAmt = 20
         } else if (price === "$$$") {
-            searchBox.append("The average user spends between $30 and $60 here.")
+            avgPrice.text("The average user spends between $30 and $60 here.")
+            detractAmt = 75
         } else if (price === "$$$$") {
-            searchBox.append("The average user spends more than $60 here.")
+            avgPrice.text("The average user spends more than $60 here.")
+            detractAmt = 100
         }
+        
+        console.log(detractAmt)
     })
+    
+}
 
+function onLoad() {
+    if (!localStorage.getItem('budget')) {
+        console.log("nothing here!");
+    } else {
+        localStorage.getItem('budget');
+        currentBudget = localStorage.getItem('budget');
+        $(".budgetBox").show();
+        $("#budgetTotal").text(`$${currentBudget}`);
+        $(".searchCard").show();
+        $(".des").hide();
+        $(".options").hide();
+
+        console.log(currentBudget);
+
+    }
+}
+
+function showBudgetDiv() {
+    localStorage.setItem('budget', currentBudget);
+    $(".budgetBox").show();
+    $(".searchCard").show();
+    $(".des").hide();
+    $(".options").hide();
 }
 
 $("#searchBtn").on("click", function (event) {
-    yelpSearch();
+    if ($("#userInp").val() !== "") {
+        yelpSearch();
+    }
 })
 
-onLoad();
+function runMath() {
+    currentBudget = currentBudget - detractAmt
+    console.log(currentBudget)
+    $("#budgetTotal").text(`$${currentBudget}`)
+}
 
-$("#b1").on("click", function(){
-    $(".budgetBox").show();
+function historyOnLoad() {
+    // $(`#userChoices`).append = window.localStorage.getItem('choice');
+
+    // console.log(window.localStorage.getItem('choice'));
+
+    // userChoices.text = window.localStorage.getItem('choice');
+
+    // console.log(userChoices.text);
+
+    // $(`#userChoices`).prepend = userChoices.text;
+
+    console.log(localStorage.getItem('store'));
+
+    $(`#userChoices`).text(localStorage.getItem('store'));
+
+    console.log(window.localStorage.choice);
+    $(`#choiceAddress`).text(localStorage.getItem('place'));
+}
+
+
+//On-click events
+
+$("#b1").on("click", function () {
     $("#budgetTotal").text("$100");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();   
+    currentBudget = 100;
+    showBudgetDiv()
 })
-$("#b2").on("click", function(){
-    $(".budgetBox").show();
+
+$("#b2").on("click", function () {
     $("#budgetTotal").text("$250");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
+    currentBudget = 250;
+    showBudgetDiv()
 })
-$("#b3").on("click", function(){
-    $(".budgetBox").show();
+
+$("#b3").on("click", function () {
     $("#budgetTotal").text("$325");
-    $(".searchCard").show();
-    $(".des").hide();
-    $(".options").hide();
+    currentBudget = 325;
+    showBudgetDiv()
 })
+
+$("#userSubbedBudget").on("submit", function (event) {
+    event.preventDefault()
+    currentBudget = $("#budgetInp").val().split(",").join("")
+    currentBudget = parseInt(currentBudget)
+    $("#budgetTotal").text(`$${currentBudget}`);
+    showBudgetDiv()
+})
+
+$("#userSubbedBudget").on("click", function (event) {
+    console.log(event.target)
+    event.preventDefault()
+    currentBudget = $("#budgetInp").val().split(",").join("")
+    currentBudget = parseInt(currentBudget)
+    $("#budgetTotal").text(`$${currentBudget}`);
+    showBudgetDiv()
+})
+
+$("#budgetReturn").on("click", function (event) {
+    currentBudget = ""
+    localStorage.setItem('budget', currentBudget);
+    location.reload()
+})
+
+$("#userSearchForm").on("submit", function (event) {
+    event.preventDefault()
+    if ($("#userInp").val() !== "") {
+        $(".hideSearchArea").hide();
+        yelpSearch();
+    }
+})
+
+$(".material-icons").on("click", function (event) {
+    event.preventDefault();
+    if ($("#userInp").val() !== "") {
+        $(".hideSearchArea").hide();
+        yelpSearch();
+    }
+})
+
+searchBox.on("click", "#selectChoice", function (event) {
+
+    // Local storage setting:
+    runMath()
+
+    var storeChoice = $("#choiceName").text();
+    var locAddress = $("#choiceAddress").text();
+
+    localStorage.setItem('query', searchTerm);
+    localStorage.setItem('choice', storeChoice);
+    localStorage.setItem('place', locAddress);
+    localStorage.setItem('budget', currentBudget);
+
+    // Prompt for number of people
+
+    // showDinerNumber();
+
+    // Local storage setting:
+
+    // var storeSearch = searchTerm;
+    // window.localStorage.setItem('query', storeSearch);
+    // console.log(storeSearch);
+    // window.localStorage.setItem('store', choiceName.textContent);
+    // console.log(choiceName.textContent);
+
+
+    // Run math functionality
+
+    $(".hideSearchArea").show();
+    resetSearch()
+})
+
+searchBox.on("click", "#rejectChoice", function (event) {
+    $(".hideSearchArea").show();
+    resetSearch()
+})
+
+historyOnLoad();
+onLoad();
+userLocation();
