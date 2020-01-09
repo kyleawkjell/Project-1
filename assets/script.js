@@ -207,6 +207,15 @@ $("#userSubbedBudget").on("submit", function (event) {
     showBudgetDiv()
 })
 
+$("#userSubbedBudget").on("click", function (event) {
+    console.log(event.target)
+    event.preventDefault()
+    currentBudget = $("#budgetInp").val().split(",").join("")
+    currentBudget = parseInt(currentBudget)
+    $("#budgetTotal").text(`$${currentBudget}`);
+    showBudgetDiv()
+})
+
 $("#budgetReturn").on("click", function (event) {
     currentBudget = ""
     localStorage.setItem('budget', currentBudget);
