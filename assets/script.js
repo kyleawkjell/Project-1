@@ -256,14 +256,6 @@ searchBox.on("click", "#selectChoice", function (event) {
     localStorage.setItem('choices', locationString);
     localStorage.setItem('places', addressString);
 
-
-
-
-
-
-
-
-    // Prompt for number of people
     var numberBtns = `<button class="waves-effect waves-light btn amber darken-3" id="numberPeople1">All by yourself...</button> <button class="waves-effect waves-light btn light-green darken-3" id="numberPeople2">It's a date!</button> <button class="waves-effect waves-light btn deep-purple lighten-3" id="numberPeople3">Third wheel yikes</button>`
 
     searchBox.empty();
@@ -271,15 +263,6 @@ searchBox.on("click", "#selectChoice", function (event) {
     searchBox.text("Please select your number of diners: ");
 
     searchBox.append(numberBtns);
-    // showDinerNumber();
-
-
-
-
-    // Run math functionality
-
-    // $(".hideSearchArea").show();
-    // resetSearch()
 })
 
 searchBox.on("click", "#rejectChoice", function (event) {
