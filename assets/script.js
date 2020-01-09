@@ -11,7 +11,7 @@ var userChoices = $("#userChoices");
 var populateChoice = $(`#populateChoice`);
 
 var locationArray = [];
-var addressArray  = [];
+var addressArray = [];
 
 
 
@@ -31,9 +31,7 @@ function userLocation() {
         method: "GET"
     }).then(function (response) {
         userLat = JSON.parse(response).latitude;
-        console.log(userLat);
         userLong = JSON.parse(response).longitude;
-        console.log(userLong);
 
         var currentLocation = { lat: userLat, lng: userLong };
 
@@ -67,7 +65,6 @@ function yelpSearch() {
             Authorization: "Bearer 2XkaLgENjEmUK7eaqNghrPWK2Y6W-vvX9unRTijv3APoGO8xHVkZoGhHuW9_NBeKRmigFk-21QV8bXdM2SfIurwR7IKq5RwXWE8xlNN7fLUQBxod9JuVSh6scp4TXnYx"
         }
     }).then(function (response) {
-        console.log(response)
         resetSearch();
         var newBtns = `<button id="selectChoice">Sounds great!</button> <button id="rejectChoice">No way, Jose</button>`
         $("#choiceName").text(`Your choice: ${response.businesses[0].name}`)
@@ -113,15 +110,13 @@ function yelpSearch() {
             avgPrice.text("The average user spends more than $60 here.")
             detractAmt = 100
         }
-
-        console.log(detractAmt)
     })
 
 }
 
 function onLoad() {
     if (!localStorage.getItem('budget')) {
-        console.log("nothing here!");
+        return;
     } else {
         localStorage.getItem('budget');
         currentBudget = localStorage.getItem('budget');
@@ -131,12 +126,10 @@ function onLoad() {
         $(".des").hide();
         $(".options").hide();
 
-        console.log(currentBudget);
-
     }
 }
 
-function backToLanding(){
+function backToLanding() {
     currentBudget = ""
     localStorage.setItem('budget', currentBudget);
     location.reload()
@@ -158,40 +151,29 @@ $("#searchBtn").on("click", function (event) {
 
 function runMath() {
     currentBudget = currentBudget - detractAmt
-    console.log(currentBudget)
     $("#budgetTotal").text(`$${currentBudget}`)
 }
 
 function historyOnLoad() {
 
-   var allChoices = JSON.parse(localStorage.getItem('choices')) || [];
-   var allAddresses = JSON.parse(localStorage.getItem('places')) || [];
+    var allChoices = JSON.parse(localStorage.getItem('choices')) || [];
+    var allAddresses = JSON.parse(localStorage.getItem('places')) || [];
 
-   for (var i = 0; i < allAddresses.length; i++) {
-       var publishDivs  = `<p id="userChoices"></p> <p id="choiceAddress"></p>`;
-       populateChoice.prepend(publishDivs);
+    for (var i = 0; i < allAddresses.length; i++) {
+        var publishDivs = `<p id="userChoices"></p> <p id="choiceAddress"></p>`;
+        populateChoice.prepend(publishDivs);
 
-       $(`#userChoices`).text(allChoices[i]);
-       $(`#choiceAddress`).text(allAddresses[i]);
+        $(`#userChoices`).text(allChoices[i]);
+        $(`#choiceAddress`).text(allAddresses[i]);
 
-   }
-   
+    }
 
     populateChoice.prepend(publishDivs);
-
-
-
-    console.log(JSON.parse(localStorage.getItem('choices')));
-
-    console.log(JSON.parse(localStorage.getItem('places')));
-
-
-
 
     // $(`#userChoices`).text(JSON.parse(localStorage.getItem('choices').split(",")));
     // $(`#choiceAddress`).text(localStorage.getItem('places'));
 
-    
+
 }
 
 
@@ -219,21 +201,21 @@ $("#userSubbedBudget").on("submit", function (event) {
     event.preventDefault()
     currentBudget = $(".budgetInp").val().split(",").join("")
     currentBudget = parseInt(currentBudget)
-    console.log(currentBudget)
-    if (isNaN(currentBudget)) {        
+    if (isNaN(currentBudget)) {
         $("#ifNaN").bPopup();
     } else {
         $("#budgetTotal").text(`$${currentBudget}`);
         showBudgetDiv()
+
     }
 })
 
-$("#backToLanding").on("click", function(event) {
-backToLanding()
+$("#backToLanding").on("click", function (event) {
+    backToLanding()
 })
 
 $("#budgetReturn").on("click", function (event) {
-backToLanding()
+    backToLanding()
 })
 
 $("#userSearchForm").on("submit", function (event) {
@@ -268,8 +250,6 @@ searchBox.on("click", "#selectChoice", function (event) {
     locationArray.push(storeChoice);
     addressArray.push(locAddress);
 
-    console.log(JSON.stringify(locationArray));
-
     var locationString = JSON.stringify(locationArray);
     var addressString = JSON.stringify(addressArray);
 
@@ -280,9 +260,9 @@ searchBox.on("click", "#selectChoice", function (event) {
 
 
 
-    
-    
-    
+
+
+
     // Prompt for number of people
     var numberBtns = `<button id="numberPeople1">All by yourself...</button> <button id="numberPeople2">It's a date!</button> <button id="numberPeople3">Third wheel yikes</button>`
 
@@ -294,7 +274,7 @@ searchBox.on("click", "#selectChoice", function (event) {
     // showDinerNumber();
 
 
-    
+
 
     // Run math functionality
 
