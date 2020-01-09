@@ -245,8 +245,10 @@ searchBox.on("click", "#selectChoice", function (event) {
     locationArray.push(storeChoice);
     addressArray.push(locAddress);
 
+
     var locationString = JSON.stringify(locationArray);
     var addressString = JSON.stringify(addressArray);
+
 
     localStorage.setItem('choices', locationString);
     localStorage.setItem('places', addressString);
