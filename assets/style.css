@@ -97,3 +97,17 @@
     padding-bottom: 10px;
     font-size: 70px;
 }
+
+#choiceName {
+    font-weight: bold;
+    font-size: larger;
+    text-align: center;
+}
+
+#yelpLink {
+    float: right;
+}
+
+.choiceButtons {
+    padding-top: 20px;
+}

@@ -66,10 +66,10 @@ function yelpSearch() {
         }
     }).then(function (response) {
         resetSearch();
-        var newBtns = `<button id="selectChoice">Sounds great!</button> <button id="rejectChoice">No way, Jose</button>`
-        $("#choiceName").text(`Your choice: ${response.businesses[0].name}`)
+        var newBtns = `<div class="choiceButtons"><button class="waves-effect waves-light btn blue darken-1" id="selectChoice">Sounds great!</button> <button class="waves-effect waves-light btn red darken-1" id="rejectChoice">No way, Jose</button></div>`
+        $("#choiceName").html(`<div>${response.businesses[0].name}</div>`)
         $("#choiceAddress").text(`Address: ${response.businesses[0].location.address1}`)
-        $("#yelpLink").html(`<img src="assets/yelp-favicon.png">Yelp page: <a target="blank" href="${response.businesses[0].url}">Click me!</a>`)
+        $("#yelpLink").html(`<div><img src="assets/yelp-favicon.png"></div> Yelp page: <a target="blank" href="${response.businesses[0].url}">Click me!</a>`)
         searchBox.append(newBtns)
         var lat1 = response.businesses[0].coordinates.latitude;
         var lng1 = response.businesses[0].coordinates.longitude;
@@ -264,7 +264,7 @@ searchBox.on("click", "#selectChoice", function (event) {
 
 
     // Prompt for number of people
-    var numberBtns = `<button id="numberPeople1">All by yourself...</button> <button id="numberPeople2">It's a date!</button> <button id="numberPeople3">Third wheel yikes</button>`
+    var numberBtns = `<button class="waves-effect waves-light btn amber darken-3" id="numberPeople1">All by yourself...</button> <button class="waves-effect waves-light btn light-green darken-3" id="numberPeople2">It's a date!</button> <button class="waves-effect waves-light btn deep-purple lighten-3" id="numberPeople3">Third wheel yikes</button>`
 
     searchBox.empty();
 
