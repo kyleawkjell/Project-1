@@ -156,23 +156,19 @@ function runMath() {
 
 function historyOnLoad() {
 
-    var allChoices = JSON.parse(localStorage.getItem('choices')) || [];
-    var allAddresses = JSON.parse(localStorage.getItem('places')) || [];
+   var allChoices = JSON.parse(localStorage.getItem('choices')) || [];
+   var allAddresses = JSON.parse(localStorage.getItem('places')) || [];
 
-    for (var i = 0; i < allAddresses.length; i++) {
-        var publishDivs = `<p id="userChoices"></p> <p id="choiceAddress"></p>`;
-        populateChoice.prepend(publishDivs);
+   for (var i = 0; i < allAddresses.length; i++) {
+       var publishDivs  = `<p id="userChoices"></p> <p id="choiceAddress"></p> <p id="choiceLinks"></p>`;
+       populateChoice.prepend(publishDivs);
 
         $(`#userChoices`).text(allChoices[i]);
         $(`#choiceAddress`).text(allAddresses[i]);
 
-    }
-
+   }
+   
     populateChoice.prepend(publishDivs);
-
-    // $(`#userChoices`).text(JSON.parse(localStorage.getItem('choices').split(",")));
-    // $(`#choiceAddress`).text(localStorage.getItem('places'));
-
 
 }
 
