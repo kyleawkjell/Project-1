@@ -60,25 +60,15 @@ function renderMarkers() {
 }
 
 function yelpSearch() {
-<<<<<<< HEAD
-    var searchTerm = $("#userInp").val();
-    var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=37.786882&longitude=-122.399972`
-    var searchBox = $("#searchBox");
-=======
     var searchTerm = $("#userInp").val()
     var yelpQueryURL = `http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${userLat}&longitude=${userLong}`
     var searchBox = $("#searchResults")
->>>>>>> 3c5c0114eee08918fee1b83615ed3c19226fa847
     $.ajax({
         url: yelpQueryURL,
         method: "GET",
         headers: {
             Authorization: "Bearer 2XkaLgENjEmUK7eaqNghrPWK2Y6W-vvX9unRTijv3APoGO8xHVkZoGhHuW9_NBeKRmigFk-21QV8bXdM2SfIurwR7IKq5RwXWE8xlNN7fLUQBxod9JuVSh6scp4TXnYx"
         }
-<<<<<<< HEAD
-    }).then(function(response) {
-        
-=======
     }).then(function (response) {
         console.log(response)
         var newBtns = `<button>Sounds great!</button> <button>No way, Jose</button>`
@@ -87,7 +77,6 @@ function yelpSearch() {
         $("#choicePrice").text(`Price: ${response.businesses[0].price}`)
         searchBox.append(newBtns)
 
->>>>>>> 3c5c0114eee08918fee1b83615ed3c19226fa847
         var lat1 = response.businesses[0].coordinates.latitude;
         var lng1 = response.businesses[0].coordinates.longitude;
         var lat2 = response.businesses[1].coordinates.latitude;
