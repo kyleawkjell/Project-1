@@ -92,8 +92,64 @@
     color: black;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    height: auto;
-    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 82px;
+}
+.box2 {
+    position: center;
+    margin: 0 auto;
+    background-color: #ece7e4;
+    height: 300px;
+    width: 650px;
+    border-radius: 30px;
+}
+.mainText {
+    color: #dfd8d3;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: center;
+    margin: 0 auto;
+}
+.headerFont1 {
+    color: white;
+    font-weight: null;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-style: italic;
+}
+.headerFont2 {
+    color: black;
+    font-weight: null;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+#histroy {
+    position: center;
+}
+.body1 {
+    background-color: #f4f3f1;
+    background-image: url(../images/Chilli-Hotdog-The-Boot-Room-LFC-Liverpool-Football-Club-Anfield.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;    
+    
+}
+
+.body2 {
+    background-color: #f4f3f1;
+    background-image: url(../images/steak.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;    
+    background-size: 1600px;
+
+}
+li {
+     height: 30px;
+     width: 490px ;
+     background-color: #004256;
+     margin: 0 auto;
     padding-bottom: 10px;
     font-size: 70px;
 }
