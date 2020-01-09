@@ -239,7 +239,6 @@ searchBox.on("click", "#selectChoice", function (event) {
     var locAddress = $("#choiceAddress").text();
 
 
-    localStorage.setItem('link', link);
     localStorage.setItem('query', searchTerm);
     localStorage.setItem('choice', storeChoice);
     localStorage.setItem('place', locAddress);
@@ -257,11 +256,11 @@ searchBox.on("click", "#selectChoice", function (event) {
     localStorage.setItem('places', addressString);
 
 
-    var numberBtns = `<button class="waves-effect waves-light btn amber darken-3" id="numberPeople1">All by yourself...</button> <button class="waves-effect waves-light btn light-green darken-3" id="numberPeople2">It's a date!</button> <button class="waves-effect waves-light btn deep-purple lighten-3" id="numberPeople3">Third wheel yikes</button>`
+    var numberBtns = `<div class="numberChoices"><button class="waves-effect waves-light btn amber darken-3" id="numberPeople1">All by yourself...</button> <button class="waves-effect waves-light btn amber darken-3" id="numberPeople2">It's a date!</button> <button class="waves-effect waves-light btn amber darken-3" id="numberPeople3">Third wheel yikes</button></div>`
 
     searchBox.empty();
 
-    searchBox.text("Please select your number of diners: ");
+    searchBox.html(`<div class="numberOfPeople">Please select your number of diners:</div>`);
 
     searchBox.append(numberBtns);
 })
