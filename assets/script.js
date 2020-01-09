@@ -86,20 +86,12 @@ function yelpSearch() {
         var newCity = { lat: lat, lng: lng };
 
         var restaurant1 = { lat: lat1, lng: lng1 };
-        var restaurant2 = { lat: lat2, lng: lng2 };
-        var restaurant3 = { lat: lat3, lng: lng3 };
-        var restaurant4 = { lat: lat4, lng: lng4 };
-        var restaurant5 = { lat: lat5, lng: lng5 };
 
         $(`#map`).html = "";
         var map = new google.maps.Map(
             document.getElementById("map"), { zoom: 12, center: newCity });
 
         var marker1 = new google.maps.Marker({ position: restaurant1, map: map });
-        var marker2 = new google.maps.Marker({ position: restaurant2, map: map });
-        var marker3 = new google.maps.Marker({ position: restaurant3, map: map });
-        var marker4 = new google.maps.Marker({ position: restaurant4, map: map });
-        var marker5 = new google.maps.Marker({ position: restaurant5, map: map });
 
         var price = response.businesses[0].price;
         var avgPrice = $("#avgPrice")
@@ -160,21 +152,9 @@ function runMath() {
 }
 
 function historyOnLoad() {
-    // $(`#userChoices`).append = window.localStorage.getItem('choice');
 
-    // console.log(window.localStorage.getItem('choice'));
+    $(`#userChoices`).text(localStorage.getItem('choice'));
 
-    // userChoices.text = window.localStorage.getItem('choice');
-
-    // console.log(userChoices.text);
-
-    // $(`#userChoices`).prepend = userChoices.text;
-
-    console.log(localStorage.getItem('store'));
-
-    $(`#userChoices`).text(localStorage.getItem('store'));
-
-    console.log(window.localStorage.choice);
     $(`#choiceAddress`).text(localStorage.getItem('place'));
 }
 
