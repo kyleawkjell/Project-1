@@ -120,6 +120,7 @@ function onLoad() {
         $(".searchCard").show();
         $(".des").hide();
         $(".options").hide();
+        $("#mainPage").hide();
 
     }
 }
@@ -136,6 +137,7 @@ function showBudgetDiv() {
     $(".searchCard").show();
     $(".des").hide();
     $(".options").hide();
+    $("#mainPage").hide();
 }
 
 $("#searchBtn").on("click", function (event) {
