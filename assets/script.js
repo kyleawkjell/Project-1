@@ -121,7 +121,7 @@ function yelpSearch() {
 
 function onLoad() {
     if (!localStorage.getItem('budget')) {
-        console.log("nothing here!");
+        return;
     } else {
         localStorage.getItem('budget');
         currentBudget = localStorage.getItem('budget');
@@ -158,15 +158,11 @@ function runMath() {
 
 function historyOnLoad() {
 
-   var allChoices = JSON.parse(localStorage.getItem('choices'));
-   var allAddresses = JSON.parse(localStorage.getItem('places'));
-
-   console.log(allAddresses);
-
-   console.log(allAddresses[0]);
+   var allChoices = JSON.parse(localStorage.getItem('choices')) || [];
+   var allAddresses = JSON.parse(localStorage.getItem('places')) || [];
 
    for (var i = 0; i < allAddresses.length; i++) {
-       var publishDivs  = `<p id="userChoices"></p> <p id="choiceAddress"></p>`;
+       var publishDivs  = `<p id="userChoices"></p> <p id="choiceAddress"></p> <p id="choiceLinks"></p>`;
        populateChoice.prepend(publishDivs);
 
        $(`#userChoices`).text(allChoices[i]);
@@ -174,22 +170,8 @@ function historyOnLoad() {
 
    }
    
-
     populateChoice.prepend(publishDivs);
 
-
-
-    console.log(JSON.parse(localStorage.getItem('choices')));
-
-    console.log(JSON.parse(localStorage.getItem('places')));
-
-
-
-
-    // $(`#userChoices`).text(JSON.parse(localStorage.getItem('choices').split(",")));
-    // $(`#choiceAddress`).text(localStorage.getItem('places'));
-
-    
 }
 
 
