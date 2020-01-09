@@ -8,6 +8,11 @@ var currentBudget
 var detractAmt
 var historyLink = $("#historyLink");
 var userChoices = $("#userChoices");
+var populateChoice = $(`#populateChoice`);
+
+var locationArray = [];
+var addressArray  = [];
+
 
 
 function resetSearch() {
@@ -86,20 +91,12 @@ function yelpSearch() {
         var newCity = { lat: lat, lng: lng };
 
         var restaurant1 = { lat: lat1, lng: lng1 };
-        var restaurant2 = { lat: lat2, lng: lng2 };
-        var restaurant3 = { lat: lat3, lng: lng3 };
-        var restaurant4 = { lat: lat4, lng: lng4 };
-        var restaurant5 = { lat: lat5, lng: lng5 };
 
         $(`#map`).html = "";
         var map = new google.maps.Map(
             document.getElementById("map"), { zoom: 12, center: newCity });
 
         var marker1 = new google.maps.Marker({ position: restaurant1, map: map });
-        var marker2 = new google.maps.Marker({ position: restaurant2, map: map });
-        var marker3 = new google.maps.Marker({ position: restaurant3, map: map });
-        var marker4 = new google.maps.Marker({ position: restaurant4, map: map });
-        var marker5 = new google.maps.Marker({ position: restaurant5, map: map });
 
         var price = response.businesses[0].price;
         var avgPrice = $("#avgPrice")
@@ -111,7 +108,7 @@ function yelpSearch() {
             detractAmt = 20
         } else if (price === "$$$") {
             avgPrice.text("The average user spends between $30 and $60 here.")
-            detractAmt = 75
+            detractAmt = 45
         } else if (price === "$$$$") {
             avgPrice.text("The average user spends more than $60 here.")
             detractAmt = 100
@@ -166,21 +163,39 @@ function runMath() {
 }
 
 function historyOnLoad() {
-    // $(`#userChoices`).append = window.localStorage.getItem('choice');
 
-    // console.log(window.localStorage.getItem('choice'));
+   var allChoices = JSON.parse(localStorage.getItem('choices'));
+   var allAddresses = JSON.parse(localStorage.getItem('places'));
 
-    // userChoices.text = window.localStorage.getItem('choice');
+   console.log(allAddresses);
 
-    // console.log(userChoices.text);
+   console.log(allAddresses[0]);
 
-    // $(`#userChoices`).prepend = userChoices.text;
+   for (var i = 0; i < allAddresses.length; i++) {
+       var publishDivs  = `<p id="userChoices"></p> <p id="choiceAddress"></p>`;
+       populateChoice.prepend(publishDivs);
 
-    console.log(localStorage.getItem('store'));
+       $(`#userChoices`).text(allChoices[i]);
+       $(`#choiceAddress`).text(allAddresses[i]);
 
-    $(`#userChoices`).text(localStorage.getItem('store'));
+   }
+   
 
-    console.log(window.localStorage.choice);
+    populateChoice.prepend(publishDivs);
+
+
+
+    console.log(JSON.parse(localStorage.getItem('choices')));
+
+    console.log(JSON.parse(localStorage.getItem('places')));
+
+
+
+
+    // $(`#userChoices`).text(JSON.parse(localStorage.getItem('choices').split(",")));
+    // $(`#choiceAddress`).text(localStorage.getItem('places'));
+
+    
 }
 
 
@@ -206,7 +221,7 @@ $("#b3").on("click", function () {
 
 $("#userSubbedBudget").on("submit", function (event) {
     event.preventDefault()
-    currentBudget = $("#budgetInp").val().split(",").join("")
+    currentBudget = $(".budgetInp").val().split(",").join("")
     currentBudget = parseInt(currentBudget)
     console.log(currentBudget)
     if (isNaN(currentBudget)) {        
@@ -244,36 +259,73 @@ $(".material-icons").on("click", function (event) {
 searchBox.on("click", "#selectChoice", function (event) {
 
     // Local storage setting:
-    runMath()
+    // runMath()
 
     var storeChoice = $("#choiceName").text();
-    var choiceAddress = $("#choiceAddress").text();
+    var locAddress = $("#choiceAddress").text();
 
     localStorage.setItem('query', searchTerm);
     localStorage.setItem('choice', storeChoice);
-    localStorage.setItem('place', choiceAddress);
+    localStorage.setItem('place', locAddress);
     localStorage.setItem('budget', currentBudget);
 
-    // Prompt for number of people
+    locationArray.push(storeChoice);
+    addressArray.push(locAddress);
 
+    console.log(JSON.stringify(locationArray));
+
+    var locationString = JSON.stringify(locationArray);
+    var addressString = JSON.stringify(addressArray);
+
+    localStorage.setItem('choices', locationString);
+    localStorage.setItem('places', addressString);
+
+
+
+
+
+    
+    
+    
+    // Prompt for number of people
+    var numberBtns = `<button id="numberPeople1">All by yourself...</button> <button id="numberPeople2">It's a date!</button> <button id="numberPeople3">Third wheel yikes</button>`
+
+    searchBox.empty();
+
+    searchBox.text("Please select your number of diners: ");
+
+    searchBox.append(numberBtns);
     // showDinerNumber();
 
-    // Local storage setting:
 
-    var storeSearch = searchTerm;
-    window.localStorage.setItem('query', storeSearch);
-    console.log(storeSearch);
-    window.localStorage.setItem('store', choiceName.textContent);
-    console.log(choiceName.textContent);
-
+    
 
     // Run math functionality
 
+    // $(".hideSearchArea").show();
+    // resetSearch()
+})
+
+searchBox.on("click", "#rejectChoice", function (event) {
     $(".hideSearchArea").show();
     resetSearch()
 })
 
-searchBox.on("click", "#rejectChoice", function (event) {
+searchBox.on("click", "#numberPeople1", function (event) {
+    detractAmt = (detractAmt * 1);
+    runMath();
+    $(".hideSearchArea").show();
+    resetSearch()
+})
+searchBox.on("click", "#numberPeople2", function (event) {
+    detractAmt = (detractAmt * 2);
+    runMath();
+    $(".hideSearchArea").show();
+    resetSearch()
+})
+searchBox.on("click", "#numberPeople3", function (event) {
+    detractAmt = (detractAmt * 3);
+    runMath();
     $(".hideSearchArea").show();
     resetSearch()
 })
