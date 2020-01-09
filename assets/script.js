@@ -164,12 +164,8 @@ function runMath() {
 
 function historyOnLoad() {
 
-   var allChoices = JSON.parse(localStorage.getItem('choices'));
-   var allAddresses = JSON.parse(localStorage.getItem('places'));
-
-   console.log(allAddresses);
-
-   console.log(allAddresses[0]);
+   var allChoices = JSON.parse(localStorage.getItem('choices')) || [];
+   var allAddresses = JSON.parse(localStorage.getItem('places')) || [];
 
    for (var i = 0; i < allAddresses.length; i++) {
        var publishDivs  = `<p id="userChoices"></p> <p id="choiceAddress"></p>`;
