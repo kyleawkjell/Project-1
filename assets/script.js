@@ -116,10 +116,10 @@ function yelpSearch() {
             avgPrice.text("The average user spends more than $60 here.")
             detractAmt = 100
         }
-        
+
         console.log(detractAmt)
     })
-    
+
 }
 
 function onLoad() {
@@ -137,6 +137,12 @@ function onLoad() {
         console.log(currentBudget);
 
     }
+}
+
+function backToLanding(){
+    currentBudget = ""
+    localStorage.setItem('budget', currentBudget);
+    location.reload()
 }
 
 function showBudgetDiv() {
@@ -202,14 +208,21 @@ $("#userSubbedBudget").on("submit", function (event) {
     event.preventDefault()
     currentBudget = $("#budgetInp").val().split(",").join("")
     currentBudget = parseInt(currentBudget)
-    $("#budgetTotal").text(`$${currentBudget}`);
-    showBudgetDiv()
+    console.log(currentBudget)
+    if (isNaN(currentBudget)) {        
+        $("#ifNaN").bPopup();
+    } else {
+        $("#budgetTotal").text(`$${currentBudget}`);
+        showBudgetDiv()
+    }
+})
+
+$("#backToLanding").on("click", function(event) {
+backToLanding()
 })
 
 $("#budgetReturn").on("click", function (event) {
-    currentBudget = ""
-    localStorage.setItem('budget', currentBudget);
-    location.reload()
+backToLanding()
 })
 
 $("#userSearchForm").on("submit", function (event) {
