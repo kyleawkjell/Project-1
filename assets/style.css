@@ -145,13 +145,14 @@
     background-size: 1600px;
 
 }
-#starbucks {
+#userChoices {
+    font-weight: bold;
      height: 30px;
      width: 490px ;
      background-color: #004256;
      margin: 0 auto;
     padding-bottom: 10px;
-    font-size: 70px;
+    color: white;
 }
 
 #choiceName {

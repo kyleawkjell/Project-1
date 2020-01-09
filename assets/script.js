@@ -11,8 +11,10 @@ var userChoices = $("#userChoices");
 var populateChoice = $(`#populateChoice`);
 var mainText = $(`#mainText`);
 
+
 var locationArray = [];
 var addressArray = [];
+
 
 
 
@@ -69,13 +71,12 @@ function yelpSearch() {
         resetSearch();
         var newBtns = `<div class="choiceButtons"><button class="waves-effect waves-light btn blue darken-1" id="selectChoice">Sounds great!</button> <button class="waves-effect waves-light btn red darken-1" id="rejectChoice">No way, Jose</button></div>`
         $("#choiceName").html(`<div>${response.businesses[0].name}</div>`)
-        $("#choiceAddress").text(`Address: ${response.businesses[0].location.address1}`)
+        $("#choiceAddress").text(`${response.businesses[0].location.address1}`)
         $("#yelpLink").html(`<div><img src="assets/yelp-favicon.png"></div> Yelp page: <a target="blank" href="${response.businesses[0].url}">Click me!</a>`)
         searchBox.append(newBtns)
         var lat1 = response.businesses[0].coordinates.latitude;
         var lng1 = response.businesses[0].coordinates.longitude;
-        var link = response.businesses[0].url;
-        console.log(link);
+        link = response.businesses[0].url;
 
         var lat = response.region.center.latitude;
         var lng = response.region.center.longitude;
@@ -155,11 +156,13 @@ function historyOnLoad() {
    var allAddresses = JSON.parse(localStorage.getItem('places')) || [];
 
    for (var i = 0; i < allAddresses.length; i++) {
-       var publishDivs  = `<p id="userChoices"></p> <p id="choiceAddress"></p> <p id="choiceLinks"></p>`;
+       var publishDivs  = `<li id="userChoices"></li>`;
         mainText.prepend(publishDivs);
 
-        $(`#userChoices`).text(allChoices[i]);
-        $(`#choiceAddress`).text(allAddresses[i]);
+        $(`#userChoices`).prepend((`${allChoices[i]}:  ${allAddresses[i]}`));
+        // $(`#choiceAddress`).text(allAddresses[i]);
+
+        
 
         
    }
@@ -233,6 +236,8 @@ searchBox.on("click", "#selectChoice", function (event) {
     var storeChoice = $("#choiceName").text();
     var locAddress = $("#choiceAddress").text();
 
+
+    localStorage.setItem('link', link);
     localStorage.setItem('query', searchTerm);
     localStorage.setItem('choice', storeChoice);
     localStorage.setItem('place', locAddress);
@@ -240,12 +245,15 @@ searchBox.on("click", "#selectChoice", function (event) {
 
     locationArray.push(storeChoice);
     addressArray.push(locAddress);
+    linkArray.push(link);
 
     var locationString = JSON.stringify(locationArray);
     var addressString = JSON.stringify(addressArray);
+    var linkString = JSON.stringify(linkArray);
 
     localStorage.setItem('choices', locationString);
     localStorage.setItem('places', addressString);
+    localStorage.setItem('links', linkString);
 
 
 
