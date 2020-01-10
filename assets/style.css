@@ -143,10 +143,10 @@ body {
     
 }
 
-#userChoices {
+.userChoices {
     font-weight: bold;
      height: auto;
-     width: 490px ;
+     width: 60%;
      background-color: #004256;
      margin: 0 auto;
     padding-bottom: 10px;
@@ -161,11 +161,12 @@ body {
     border-radius: 30px;
 }
 
-.choiceName {
+#choiceName {
     font-weight: bold;
     font-size: larger;
     text-align: center;
 }
+
 .numberOfPeople {
     font-weight: bold;
     font-size: larger;
@@ -230,7 +231,11 @@ body {
     }
     
 @media only screen and (max-width: 560px) {
-        
+    
+    .box2 {
+        width: 87%;
+    }
+
     #map  {
             height: 200px;
             width: 250px;
