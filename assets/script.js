@@ -157,10 +157,10 @@ function historyOnLoad() {
    var allAddresses = JSON.parse(localStorage.getItem('places')) || [];
 
    for (var i = 0; i < allAddresses.length; i++) {
-       var publishDivs  = `<li id="userChoices"></li>`;
+       var publishDivs  = `<li class="userChoices"></li>`;
         mainText.prepend(publishDivs);
 
-        $(`#userChoices`).prepend((`${allChoices[i]}:  ${allAddresses[i]}`));
+        $(`.userChoices`).prepend((`${allChoices[i]}:  ${allAddresses[i]}`));
         // $(`#choiceAddress`).text(allAddresses[i]);
 
         
@@ -170,6 +170,7 @@ function historyOnLoad() {
    
 
 }
+
 
 
 //On-click events
