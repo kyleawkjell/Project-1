@@ -8,7 +8,7 @@
 .box {
     position: relative;
     background-color: lightgoldenrodyellow;
-    width: 60%;
+    width: 100%;
     margin: auto;
     text-align: center;
 }
@@ -114,6 +114,7 @@
     font-family: 'Playfair Display', serif;
     text-align: center;
     font-style: italic;
+    padding-top: 20px;
 }
 .headerFont2 {
     color: black;
@@ -133,18 +134,9 @@ body {
     
 }
 
-.body2 {
-    background-color: #f4f3f1;
-    background-image: url(../images/steak.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;    
-    background-size: 1600px;
-
-}
 #userChoices {
     font-weight: bold;
-     height: 30px;
+     height: auto;
      width: 490px ;
      background-color: #004256;
      margin: 0 auto;
@@ -155,11 +147,17 @@ body {
     margin-bottom: 15px;
     padding-bottom: 15px;
     padding: 30px;
+    border-radius: 30px;
     font-size: 25px;
     border-radius: 30px;
 }
 
 #choiceName {
+    font-weight: bold;
+    font-size: larger;
+    text-align: center;
+}
+.numberOfPeople {
     font-weight: bold;
     font-size: larger;
     text-align: center;
@@ -172,6 +170,18 @@ body {
 .choiceButtons {
     padding-top: 20px;
 }
+#numberPeople1 {
+    margin-top: 10px;
+}
+#numberPeople2 {
+    margin-top: 10px;
+}
+#numberPeople3 {
+    margin-top: 10px;
+}
+.numberChoices {
+    text-align: center;
+}
 
 #mainPage {
     background-color: white;
@@ -180,3 +190,43 @@ body {
 *, ::before, ::after {
     box-sizing: unset;
 }
+
+#budgetReturn {
+    margin: 20px;
+}
+
+.clearing {
+    text-align: center;
+    padding: 20px;
+}
+
+@media only screen and (max-width: 1020px) {
+  
+    .red {display: none;}
+    }
+
+@media only screen and (max-width: 700px) {
+  
+    #map  {
+        height: 300px;
+        width: 325px;
+      }
+      #screenOptimize1 {
+          width: 100%;
+      }
+
+      #screenOptimize2{
+          width: 100%;
+      }
+    }
+    
+@media only screen and (max-width: 560px) {
+        
+    #map  {
+            height: 200px;
+            width: 250px;
+        }
+    .material-icons {
+            display: none;
+        }
+  }
