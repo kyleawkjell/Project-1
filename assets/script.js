@@ -7,7 +7,7 @@ var searchTerm = $("#userInp").val();
 var currentBudget
 var detractAmt
 var historyLink = $("#historyLink");
-var userChoices = $(".userChoices");
+var userChoices = $(`#userChoices`);
 var populateChoice = $(`#populateChoice`);
 var mainText = $(`#mainText`);
 
@@ -164,10 +164,10 @@ function historyOnLoad() {
    console.log(allAddresses)
 
    for (var i = 0; i < allAddresses.length; i++) {
-       var publishDivs  = `<li class="userChoices"></li>`;
+       var publishDivs  = `<li id="userChoices"></li>`;
         mainText.prepend(publishDivs);
 
-        $(`.userChoices`).prepend((`${allChoices[i]}:  ${allAddresses[i]}`));
+        $(`#userChoices`).text((`${allChoices[i]}:  ${allAddresses[i]}`));
         // $(`#choiceAddress`).text(allAddresses[i]);
         
    }
