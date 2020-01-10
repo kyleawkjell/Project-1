@@ -8,7 +8,7 @@
 .box {
     position: relative;
     background-color: lightgoldenrodyellow;
-    width: 60%;
+    width: 100%;
     margin: auto;
     text-align: center;
 }
@@ -190,7 +190,42 @@ body {
     box-sizing: unset;
 }
 
+#budgetReturn {
+    margin: 20px;
+}
+
 .clearing {
     text-align: center;
     padding: 20px;
 }
+
+@media only screen and (max-width: 1020px) {
+  
+    .red {display: none;}
+    }
+
+@media only screen and (max-width: 700px) {
+  
+    #map  {
+        height: 300px;
+        width: 325px;
+      }
+      #screenOptimize1 {
+          width: 100%;
+      }
+
+      #screenOptimize2{
+          width: 100%;
+      }
+    }
+    
+@media only screen and (max-width: 560px) {
+        
+    #map  {
+            height: 200px;
+            width: 250px;
+        }
+    .material-icons {
+            display: none;
+        }
+  }
