@@ -68,7 +68,7 @@ function yelpSearch() {
             Authorization: "Bearer 2XkaLgENjEmUK7eaqNghrPWK2Y6W-vvX9unRTijv3APoGO8xHVkZoGhHuW9_NBeKRmigFk-21QV8bXdM2SfIurwR7IKq5RwXWE8xlNN7fLUQBxod9JuVSh6scp4TXnYx"
         }
     }).then(function (response) {
-        $("#loadingSpinner").hide();
+        $("#progressBar").hide();
         resetSearch();
         var newBtns = `<div class="choiceButtons"><button class="waves-effect waves-light btn blue darken-1" id="selectChoice">Sounds great!</button> <button class="waves-effect waves-light btn red darken-1" id="rejectChoice">No way, Jose</button></div>`
         $("#choiceName").html(`<div>${response.businesses[0].name}</div>`)
@@ -235,7 +235,7 @@ $("#userSearchForm").on("submit", function (event) {
     event.preventDefault()
     if ($("#userInp").val() !== "") {
         $(".hideSearchArea").hide();
-        $("#loadingSpinner").show();
+        $("#progressBar").show();
         yelpSearch();
     }
 })
@@ -244,6 +244,7 @@ $(".material-icons").on("click", function (event) {
     event.preventDefault();
     if ($("#userInp").val() !== "") {
         $(".hideSearchArea").hide();
+        $("#progressBar").show();
         yelpSearch();
     }
 })

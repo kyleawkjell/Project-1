@@ -36,11 +36,11 @@
 
   #loadingSpinner {
       text-align: center;
-      display: none;
   }
 
   #progressBar {
       width: 80%;
+      display: none;
       margin: 0 10%;
   }
   .modal {
