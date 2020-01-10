@@ -19,6 +19,12 @@ Primary features:
 
 This website is mobile responsive and fully functional at any screensize.
 
+Repository link:
+[https://github.com/kyleawkjell/Project-1](https://github.com/kyleawkjell/Project-1)
+
+Deployed page:
+[https://kyleawkjell.github.io/Project-1/](https://kyleawkjell.github.io/Project-1/)
+
 ## Screenshots
 
 ![Screenshot of Landing Page](images/landing.png)
