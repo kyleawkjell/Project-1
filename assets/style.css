@@ -152,7 +152,7 @@ body {
     
 }
 
-.userChoices {
+#userChoices {
     font-weight: bold;
      height: auto;
      width: 60%;
