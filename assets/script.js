@@ -170,16 +170,8 @@ function historyOnLoad() {
         // $(`#choiceAddress`).text(allAddresses[i]);
         
    }
-   
 
 }
-
-function setLocalStorage() {
-
-
-
-}
-
 
 //On-click events
 
@@ -292,6 +284,7 @@ searchBox.on("click", "#numberPeople1", function (event) {
     // setLocalStorage();
     detractAmt = (detractAmt * 1);
     runMath();
+    localStorage.setItem('budget', currentBudget);
     $(".hideSearchArea").show();
     resetSearch()
 })
@@ -299,6 +292,7 @@ searchBox.on("click", "#numberPeople2", function (event) {
     // setLocalStorage();
     detractAmt = (detractAmt * 2);
     runMath();
+    localStorage.setItem('budget', currentBudget);
     $(".hideSearchArea").show();
     resetSearch()
 })
@@ -306,6 +300,7 @@ searchBox.on("click", "#numberPeople3", function (event) {
     // setLocalStorage();
     detractAmt = (detractAmt * 3);
     runMath();
+    localStorage.setItem('budget', currentBudget);
     $(".hideSearchArea").show();
     resetSearch()
 })
