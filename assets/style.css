@@ -202,7 +202,7 @@ body {
 
 @media only screen and (max-width: 1020px) {
   
-    .red {display: none;}
+    .btn-floating {display: none;}
     }
 
 @media only screen and (max-width: 700px) {
