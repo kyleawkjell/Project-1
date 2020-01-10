@@ -7,7 +7,7 @@ var searchTerm = $("#userInp").val();
 var currentBudget
 var detractAmt
 var historyLink = $("#historyLink");
-var userChoices = $("#userChoices");
+var userChoices = $(".userChoices");
 var populateChoice = $(`#populateChoice`);
 var mainText = $(`#mainText`);
 
@@ -161,6 +161,7 @@ function historyOnLoad() {
 
    var allChoices = JSON.parse(localStorage.getItem('choices')) || [];
    var allAddresses = JSON.parse(localStorage.getItem('places')) || [];
+   console.log(allAddresses)
 
    for (var i = 0; i < allAddresses.length; i++) {
        var publishDivs  = `<li class="userChoices"></li>`;
