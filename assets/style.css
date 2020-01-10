@@ -34,6 +34,15 @@
     transition: all 0.25s ease-in-out;
   }
 
+  #loadingSpinner {
+      text-align: center;
+      display: none;
+  }
+
+  #progressBar {
+      width: 80%;
+      margin: 0 10%;
+  }
   .modal {
     width: 600px;
     height: 400px;
