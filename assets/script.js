@@ -148,7 +148,12 @@ $("#searchBtn").on("click", function (event) {
 
 function runMath() {
     currentBudget = currentBudget - detractAmt
-    $("#budgetTotal").text(`$${currentBudget}`)
+
+    if (currentBudget < 0) {
+        $(`#ifOverBudget`).bPopup().css({ "top": "0", "left": "0"});
+    } else {
+        $("#budgetTotal").text(`$${currentBudget}`)
+    }
 }
 
 function historyOnLoad() {
@@ -203,6 +208,15 @@ $("#userSubbedBudget").on("submit", function (event) {
         showBudgetDiv()
 
     }
+})
+
+$(`#backToBudget`).on("click", function (event) {
+    $(".hideSearchArea").show();
+    resetSearch()
+    location.reload();
+    // console.log(event.target);
+    // backToLanding()
+    
 })
 
 $("#backToLanding").on("click", function (event) {
