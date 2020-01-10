@@ -34,6 +34,15 @@
     transition: all 0.25s ease-in-out;
   }
 
+  #loadingSpinner {
+      text-align: center;
+  }
+
+  #progressBar {
+      width: 80%;
+      display: none;
+      margin: 0 10%;
+  }
   .modal {
     width: 600px;
     height: 400px;
@@ -104,7 +113,7 @@
     position: center;
     margin: 0 auto;
     background-color: #ece7e4;
-    width: 80%;
+    width: 60%;
     border-radius: 30px;
 }
 .mainText {
@@ -113,6 +122,11 @@
     text-align: center;
     margin: 0 auto;
 }
+
+.userChoices {
+    width: 100%;
+}
+
 .headerFont1 {
     font-weight: null;
     font-family: 'Playfair Display', serif;
@@ -138,7 +152,7 @@ body {
     
 }
 
-#userChoices {
+.userChoices {
     font-weight: bold;
      height: auto;
      width: 60%;
@@ -161,6 +175,7 @@ body {
     font-size: larger;
     text-align: center;
 }
+
 .numberOfPeople {
     font-weight: bold;
     font-size: larger;
@@ -225,11 +240,18 @@ body {
     }
     
 @media only screen and (max-width: 560px) {
-        
+    
+    .box2 {
+        width: 87%;
+    }
+
     #map  {
             height: 200px;
             width: 250px;
         }
+    .brand-logo {
+        font-size: 19px !important;
+    }
     .material-icons {
             display: none;
         }
